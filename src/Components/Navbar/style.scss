@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: "Montserrat";
+}
+
+// Nav
+
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  .logo {
+    padding: 10px 20px;
+    font-size: 30px;
+    font-family: Poppins;
+    font-weight: 650;
+    color: #1849fb;
+  }
+
+  .menu-item1 {
+    ul {
+      list-style: none;
+      display: flex;
+    }
+    li {
+      padding: 10px 20px;
+    }
+    a {
+      text-decoration: none;
+      color: #18a0fb;
+    }
+    a:hover {
+      color: #1849fb;
+    }
+  }
+
+  .menu-item2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .navLink {
+      text-decoration: none !important;
+      color: #18a0fb;
+      margin-right: 1em;
+      &:hover {
+        color: #1849fb;
+      }
+    }
+    button {
+      margin: auto;
+      width: 130px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      border: 1px solid #18a0fb;
+      border-radius: 6px;
+      font-size: 15px;
+      margin-right: 10px;
+      &:hover {
+        cursor: pointer;
+        border: 1px solid #1849fb;
+        p {
+          color: #1849fb;
+        }
+      }
+      p {
+        text-decoration: none;
+        color: #18a0fb;
+        font-size: 15px;
+      }
+    }
+  }
+}

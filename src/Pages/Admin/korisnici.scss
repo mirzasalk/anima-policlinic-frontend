@@ -1,0 +1,86 @@
+.usersBtnDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  button {
+    margin: 0 0 0.5em 0;
+  }
+  #userDeleteDiv {
+    background-color: rgb(248, 42, 42);
+  }
+}
+.deleteUserDivMain {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.546);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .deleteUserDiv {
+    width: 50%;
+    height: fit-content;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 2em 0 2em 0;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    .deleteUserButtonsDiv {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      #userDeleteBtn {
+        background-color: rgb(248, 42, 42);
+      }
+    }
+  }
+}
+.cardForChangeBackground {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.546);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .cardForChange {
+    width: 50%;
+    height: fit-content;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 0 2em 0;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    .iconDiv {
+      width: 99%;
+      display: flex;
+      justify-content: end;
+      align-items: start;
+      margin: 0.5em;
+      img:hover {
+        cursor: pointer;
+      }
+    }
+    .userInfoElement {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      input {
+        height: 2em;
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+#footer {
+  padding-top: 1em;
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+h1 {
+  margin: 0;
+}
+h3 {
+  margin: 0;
+}
+.FieldAboveLine {
+  display: flex;
+  width: 95%;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid gainsboro;
+}
+
+.WorkTime {
+  width: 20%;
+}
+.WorkDayDiv {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid gainsboro;
+}
+.SaturdayDiv {
+  display: flex;
+  justify-content: space-between;
+}
+.FooterMeni {
+  display: flex;
+
+  a {
+    text-decoration: none;
+    padding-right: 40px;
+    font-size: 15px;
+    color: #18a0fb;
+    &:hover {
+      color: #1849fb;
+    }
+  }
+}
+.Logo {
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 650;
+  color: #1849fb;
+}

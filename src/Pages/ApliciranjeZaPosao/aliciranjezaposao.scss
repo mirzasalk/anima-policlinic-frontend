@@ -1,0 +1,139 @@
+#apliciranjeMain {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+
+  h1 {
+    margin: 0em 0.5em 0.5em 0.5em;
+  }
+  .formDiv {
+    width: 90%;
+    margin-top: 100px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    border: 1px solid gray;
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+}
+.ant-picker {
+  border: 1px solid rgb(81, 79, 79) !important;
+  height: 2.8em !important;
+  border-radius: 0.2em !important;
+}
+.formMiddleLine {
+  width: 100%;
+  border-bottom: 0.5px solid rgb(81, 79, 79);
+  display: flex;
+  flex-wrap: wrap;
+}
+.fieldAboveCenterLine {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  .inputDiv {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    margin: 1em;
+    width: 30.3%;
+    padding: auto;
+    input {
+      width: 98%;
+      height: 3em;
+      padding: 0 1em;
+    }
+  }
+}
+.fieldBelowCenterLine {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  .inputDiv {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    margin: 1em;
+    width: 30.3%;
+    padding: auto;
+    label {
+      text-align: center;
+    }
+    input {
+      width: 98%;
+      height: 3em;
+      padding: 0 1em;
+    }
+  }
+}
+.timePickerDiv {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  margin: 1em;
+  width: 30.3%;
+  padding: auto;
+  input {
+    width: 98%;
+    height: 3em;
+    padding: 0 1em;
+  }
+}
+.buttonDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button {
+    width: 30%;
+  }
+  button:hover {
+    cursor: pointer;
+  }
+}
+.errorClass {
+  margin: 0;
+  color: red;
+}
+
+.correctClass {
+  margin: 0;
+  color: black;
+}
+.inputDivTerapies {
+  width: 30%;
+}
+.terapiesCheckbox {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 12vh;
+  border: 1px solid gray;
+  width: 100%;
+  justify-content: start;
+  .therapiCheckField {
+    display: flex;
+    width: 100%;
+    border: 1px solid black;
+    justify-content: start;
+    align-items: center;
+    span {
+      margin-left: 1rem;
+    }
+    input {
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+    }
+  }
+}

@@ -1,0 +1,118 @@
+#zakazaniTerminiMain {
+  display: flex;
+
+  .WorkSpace {
+    width: 100%;
+    display: flex;
+    .rightFieldDiv {
+      width: 80%;
+
+      margin: 0 0 0 2em;
+      justify-content: center;
+      align-items: center;
+      h1 {
+        width: 95%;
+        margin: 1em 0 1em 0;
+      }
+      .scrollDiv {
+        width: 100%;
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0 3em;
+        .TerminiApproved {
+          width: 25%;
+          border: 1px solid rgb(38, 255, 0);
+          padding: 1em;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: start;
+          box-shadow: rgb(38, 255, 0) 0px 0px 5px;
+          margin: 0 0 1em 1em;
+          p {
+            margin: 0.2em 0;
+          }
+        }
+        .TerminiApproved:hover {
+          cursor: pointer;
+        }
+        .TerminiRejected {
+          width: 25%;
+          border: 1px solid rgb(255, 0, 0);
+          padding: 1em;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: start;
+          margin: 0 0 1em 1em;
+          box-shadow: rgb(255, 0, 0) 0px 1px 4px;
+          p {
+            margin: 0.2em 0;
+          }
+        }
+        .TerminiRejected:hover {
+          cursor: pointer;
+        }
+        .TerminiPending {
+          display: none;
+        }
+        .DeleteCancelDiv {
+          width: 100%;
+          display: flex;
+          justify-content: end;
+          align-items: center;
+          .cancel {
+            text-decoration: underline;
+          }
+          .delete {
+            margin-left: 1em;
+            text-decoration: underline;
+            color: red;
+          }
+        }
+      }
+    }
+  }
+  .backGroundOfShowCard {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.546);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .showCard {
+      width: 50%;
+      height: 20vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      background-color: white;
+      box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+        rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+        rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+      padding: 0.5em 0 3em 0;
+      .iconDiv {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        padding-right: 1em;
+      }
+      .iconDiv:hover {
+        cursor: pointer;
+      }
+      div {
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
