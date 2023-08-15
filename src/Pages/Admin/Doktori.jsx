@@ -8,15 +8,30 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./admin.scss";
 import { toast } from "react-hot-toast";
-import { TimePicker } from "antd";
+import { TimePicker, Space } from "antd";
 
 const Doktori = () => {
   const [doctor, setDoctor] = useState([]);
   const [deleteDoctorDivShowing, setDeleteDoctorDivShowing] = useState(false);
+  const [newDoctorInfo, setNewDoctroInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+    specialization: "",
+    experience: "",
+    feePerConsultation: "",
+    timings: null,
+    therapies: null,
+  });
   const [changeDoctorDivShowing, setChangeDoctorDivShowing] = useState(false);
+  const [showNewDoctorCard, setShowNewDoctorCard] = useState(true);
   const [doctorID, setDoctorID] = useState("");
   const [userID, setUserID] = useState("");
   const [changedDoctorValues, setChangedDoctorValues] = useState("");
+  const [allchecked, setAllChecked] = useState([]);
+  const [therapies, setTherapies] = useState([]);
   const dispatch = useDispatch();
 
   const getDoctors = async () => {
@@ -37,9 +52,27 @@ const Doktori = () => {
       console.log(error);
     }
   };
+  const getTherapys = async () => {
+    try {
+      dispatch(showLoading);
+      const response = await axios.get(
+        "http://localhost:5000/api/user/get-therapys",
+        {
+          headers: {
+            authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      dispatch(hideLoading);
 
+      setTherapies([...response.data.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     getDoctors();
+    getTherapys();
   }, []);
 
   useEffect(() => {
@@ -113,13 +146,28 @@ const Doktori = () => {
     } catch (error) {}
     setChangeDoctorDivShowing(false);
   };
+  const onChangeInputNewDoctor = () => {
+    setDoctorData({ ...doctorData, [e.target.name]: e.target.value });
+  };
+
+  const handleCheckedTherapiesNewDoctor = (e) => {
+    if (e.target.checked) {
+      setAllChecked([...allchecked, e.target.value]);
+    } else {
+      setAllChecked(allchecked.filter((item) => item !== e.target.value));
+    }
+  };
   return (
     <div id="adminMain">
       <div className="WorkSpace">
         <AdminNav />
+
         <div className="ListeDiv">
           <div className="listaDoktora">
             <h1>Lista doktora</h1>
+            <div className="AddNewDoctorDiv">
+              <button className="AddNewDoctorBtn">Dodaj doktora</button>
+            </div>
             <div className="DivForDoktorCards">
               {doctor.map((item, index) => {
                 return (
@@ -341,6 +389,156 @@ const Doktori = () => {
               <div className="buttonDiv">
                 <button onClick={changeDoctorInfo}>Izmeni</button>
               </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+      {showNewDoctorCard ? (
+        <div id="newDoctorMain">
+          <div className="formDiv">
+            <h1>Apliciraj za posao</h1>
+            <div className="formMiddleLine"></div>
+            <div className="fieldAboveCenterLine">
+              <div className="inputDiv">
+                <label htmlFor="firstName">
+                  <p className={"correctClass"}>*Ime</p>
+                </label>
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="Ime"
+                  onChange={onChangeInputNewDoctor}
+                />
+              </div>
+              <div className="inputDiv">
+                <label htmlFor="lastName">
+                  <p className={"correctClass"}>*Prezime</p>
+                </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Prezime"
+                  onChange={onChangeInputNewDoctor}
+                />
+              </div>
+              <div className="inputDiv">
+                <label htmlFor="email">
+                  <p className={"correctClass"}>*Email</p>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={onChangeInputNewDoctor}
+                />
+              </div>
+              <div className="inputDiv">
+                <label htmlFor="phoneNumber">
+                  <p className={"correctClass"}>*Broj telefona</p>
+                </label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="Broj telefona"
+                  onChange={onChangeInputNewDoctor}
+                />
+              </div>
+              <div className="inputDiv">
+                <label htmlFor="address">
+                  <p className={"correctClass"}>*Adresa</p>
+                </label>
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Adresa"
+                  onChange={onChangeInputNewDoctor}
+                />
+              </div>
+            </div>
+            <div className="formMiddleLine"></div>
+            <div className="fieldBelowCenterLine">
+              <div className="inputDiv">
+                <label htmlFor="specialization">
+                  <p className={"correctClass"}>*Specijalizacija</p>
+                </label>
+                <input
+                  type="text"
+                  name="specialization"
+                  placeholder="Specijalizacija"
+                  onChange={onChangeInputNewDoctor}
+                />
+              </div>
+              <div className="inputDiv">
+                <label htmlFor="experience">
+                  <p className={"correctClass"}>*Godine iskustva</p>
+                </label>
+                <input
+                  type="number"
+                  name="experience"
+                  placeholder="Godine iskustva"
+                  onChange={onChangeInputNewDoctor}
+                />
+              </div>
+              <div className="inputDiv">
+                <label htmlFor="feePerConsultation">
+                  <p className={"correctClass"}>*Cena pregleda</p>
+                </label>
+                <input
+                  type="text"
+                  name="feePerConsultation"
+                  placeholder="Cena pregleda"
+                  onChange={onChangeInputNewDoctor}
+                />
+              </div>
+
+              <div className="timePickerDiv">
+                <label htmlFor="experience">
+                  <p className={"correctClass"}>*Radno vreme</p>
+                </label>
+
+                <Space wrap>
+                  <TimePicker.RangePicker
+                    format="HH:mm"
+                    name="timings"
+                    placeholder={["Početka vremena", "Kraj vremena"]}
+                    size={"large"}
+                    onChange={(Time) => {
+                      console.log(Time);
+                      let timeTemp = doctorData;
+                      timeTemp.timings = [
+                        [Time[0].$H, Time[0].$m],
+                        [Time[1].$H, Time[1].$m],
+                      ];
+
+                      setDoctorData({ ...timeTemp });
+                    }}
+                  />
+                </Space>
+              </div>
+              <div className="inputDivTerapies">
+                <label htmlFor="feePerConsultation">
+                  <p className={"correctClass"}>*Terapije</p>
+                </label>
+                <div className="terapiesCheckbox">
+                  {therapies.map((item, index) => {
+                    return (
+                      <div key={index} className="therapiCheckField">
+                        <input
+                          value={item.name}
+                          placeholder={item.name}
+                          type="checkbox"
+                          onChange={handleCheckedTherapiesNewDoctor}
+                        />
+                        <span> {item.name} </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <div className="buttonDiv">
+              <button>Kreiraj nalog doktora </button>
             </div>
           </div>
         </div>

@@ -10,88 +10,9 @@ const Usluge = () => {
   const dispatch = useDispatch();
   const [psihoterapije, setPsihoterapije] = useState([]);
   const [grupnaAnalitičkaPsihoterpija, setGrupnaAnalitičkaPsihoterpija] =
-    useState([
-      {
-        ime: "Lorem ipsum",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-        slika: "grupnaU1.jpg",
-        lekari: ["Dr.Dragana Perla", "Dr.Omer Sadiković"],
-      },
-      {
-        ime: "Lorem ipsum",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-        slika: "grupnaU2.jpg",
-        lekari: ["Dr.Omer Sadiković", "Dr.Milena Jović"],
-      },
-      {
-        ime: "Lorem ipsum",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-        slika: "grupnaU3.jpg",
-        lekari: ["Dr.Dragana Perla", "Dr.Jovan Jeremeić"],
-      },
-      {
-        ime: "Lorem ipsum",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-        slika: "grupnaU4.jpg",
-        lekari: ["Dr.Jovan Jeremeić", "Dr.Milena Jović"],
-      },
-    ]);
-  const [porodičnaPsihoanaliza, setPorodičnaPsihoanaliza] = useState([
-    {
-      ime: "Lorem ipsum",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-      slika: "porodicnaU1.jpg",
-      lekari: ["Dr.Jovan Jeremeić", "Dr.Milena Jović"],
-    },
-    {
-      ime: "Lorem ipsum",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-      slika: "porodicnaU2.jpg",
-      lekari: ["Dr.Dragana Perla", "Dr.Jovan Jeremeić"],
-    },
-    {
-      ime: "Lorem ipsum",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-      slika: "porodicnaU3.jpg",
-      lekari: ["Dr.Omer Sadiković", "Dr.Milena Jović"],
-    },
-    {
-      ime: "Lorem ipsum",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-      slika: "porodicnaU4.jpg",
-      lekari: ["Dr.Dragana Perla", "Dr.Omer Sadiković"],
-    },
-  ]);
-  const [psihijatrijaDece, setPsihijatrijaDeceDiv] = useState([
-    {
-      ime: "Lorem ipsum",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-      slika: "decijaU1.jpg",
-      lekari: ["Dr.Omer Sadiković", "Dr.Milena Jović"],
-      age: 30,
-    },
-    {
-      ime: "Lorem ipsum",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-      slika: "decijaU2.jpg",
-      lekari: ["Dr.Dragana Perla", "Dr.Omer Sadiković"],
-      age: 25,
-    },
-    {
-      ime: "Lorem ipsum",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-      slika: "decijaU3.jpg",
-      lekari: ["Dr.Jovan Jeremeić", "Dr.Milena Jović"],
-      age: 20,
-    },
-    {
-      ime: "Lorem ipsum",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ut totam quod a non, natus laborum praesentium libero hic beatae dolorem fugit sunt consectetur? Id amet voluptas dignissimos velit nobis.",
-      slika: "decijaU4.jpg",
-      lekari: ["Dr.Dragana Perla", "Dr.Jovan Jeremeić"],
-      age: 48,
-    },
-  ]);
+    useState([]);
+  const [porodičnaPsihoanaliza, setPorodičnaPsihoanaliza] = useState([]);
+  const [psihijatrijaDece, setPsihijatrijaDece] = useState([]);
   const [lekari, setLekari] = useState([]);
   const [dropDownClick, setDropDownClick] = useState(false);
   const [filterSelec, setFilterSelec] = useState([]);
@@ -126,53 +47,31 @@ const Usluge = () => {
     }
   };
 
-  const psihoterapijeFiltered = psihoterapije;
-  //   filterSelec.length !== 0
-  //     ? psihoterapije.filter((item) => item.lekari.includes(filterSelec))
-  //     : psihoterapije;
-
-  const grupnaAnalitičkaPsihoterpijaFiltered = grupnaAnalitičkaPsihoterpija;
-  //   filterSelec.length !== 0
-  //     ? grupnaAnalitičkaPsihoterpija.filter((item) =>
-  //         item.lekari.includes(filterSelec)
-  //       )
-  //     : grupnaAnalitičkaPsihoterpija;
-
-  const porodičnaPsihoanalizaFiltered =
-    filterSelec.length !== 0
-      ? porodičnaPsihoanaliza.map((item) => {
-          return therapiesOfSelectedDoctor?.includes(item.name) ? item : null;
-        })
-      : porodičnaPsihoanaliza;
-
-  //     ? porodičnaPsihoanaliza.filter((item) =>
-  //         item.lekari.includes(filterSelec)
-  //       )
-  //     : porodičnaPsihoanaliza;
-
-  const psihijatrijaDeceFiltered = psihijatrijaDece;
-  //   filterSelec.length !== 0
-  //     ? psihijatrijaDece.filter((item) => item.lekari.includes(filterSelec))
-  //     : psihijatrijaDece;
-
   useEffect(() => {
     getDoctors();
     getTherapies();
   }, []);
 
   useEffect(() => {
-    therapies?.map((item) => {
-      item.category === "PorodičnaPsihoanaliza"
-        ? setPorodičnaPsihoanaliza([...porodičnaPsihoanaliza, item])
-        : item.category === "GrupnaAnalitičkaPsihoterpija"
-        ? setGrupnaAnalitičkaPsihoterpija([
-            ...grupnaAnalitičkaPsihoterpija,
-            item,
-          ])
-        : item.category === "PsihijatrijaDece"
-        ? setPsihijatrijaDeceDiv([...psihijatrijaDece, item])
-        : setPsihoterapije([...psihoterapije, item]);
+    const psihijatrijaDeceTemp = therapies?.filter((item) => {
+      return item.category === "PsihijatrijaDece";
     });
+    setPsihijatrijaDece(psihijatrijaDeceTemp);
+
+    const grupnaAnalitičkaPsihoterpijaTemp = therapies?.filter((item) => {
+      return item.category === "GrupnaAnalitičkaPsihoterpija";
+    });
+    setGrupnaAnalitičkaPsihoterpija(grupnaAnalitičkaPsihoterpijaTemp);
+
+    const psihoterapijeTemp = therapies?.filter((item) => {
+      return item.category === "Psihoterapije";
+    });
+    setPsihoterapije(psihoterapijeTemp);
+
+    const porodičnaPsihoanalizaTemp = therapies?.filter((item) => {
+      return item.category === "PorodičnaPsihoanaliza";
+    });
+    setPorodičnaPsihoanaliza(porodičnaPsihoanalizaTemp);
   }, [therapies]);
 
   useEffect(() => {
@@ -183,11 +82,14 @@ const Usluge = () => {
         item.lastName === filterSelec[1]
       ) {
         setTherapiesOfSelectedDoctor(item.therapies);
+      } else if (filterSelec.length === 0) {
+        setTherapiesOfSelectedDoctor([]);
       }
     });
   }, [filterSelec]);
-  console.log(therapies);
-  console.log(therapiesOfSelectedDoctor);
+
+  console.log(lekari, "lekari");
+
   return (
     <div id="uslugeMain">
       <Navbar />
@@ -310,69 +212,11 @@ const Usluge = () => {
         </div>
       </div>
 
-      {psihoterapijeFiltered.length !== 0 ? (
+      {filterSelec.length === 0 ? (
         <div id="PsihoterapijeDiv">
           <h1 className="naslovUsluge">Psihoterapija</h1>
 
-          {psihoterapijeFiltered.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={index % 2 == 0 ? "TerapyCard" : "TerapyCardInverse"}
-              >
-                <div className="TerapyCardText">
-                  <h2>{item.ime}</h2>
-                  <p>{item.text}</p>
-                  <div className="lekariTerapije">
-                    <h4>
-                      <strong>Lekari:</strong>
-                    </h4>
-                    <div></div>
-                  </div>
-                </div>
-                <div className="TerapyCardImg">
-                  <img className="therapyImg" src={item.slika} />
-                  <div className="grayBackgroundDiv"></div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      ) : null}
-
-      {grupnaAnalitičkaPsihoterpijaFiltered.length !== 0 ? (
-        <div id="GrupnaAnalitičkaPsihoterpijaDiv">
-          <h1 className="naslovUsluge">Grupna analitička psihoterpija</h1>
-          {grupnaAnalitičkaPsihoterpijaFiltered.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={index % 2 == 0 ? "TerapyCard" : "TerapyCardInverse"}
-              >
-                <div className="TerapyCardText">
-                  <h2>{item.ime}</h2>
-                  <p>{item.text}</p>
-                  <div className="lekariTerapije">
-                    <h4>
-                      <strong>Lekari:</strong>
-                    </h4>
-                    <div></div>
-                  </div>
-                </div>
-                <div className="TerapyCardImg">
-                  <img className="therapyImg" src={item.slika} />
-                  <div className="grayBackgroundDiv"></div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      ) : null}
-
-      {porodičnaPsihoanalizaFiltered.length !== 0 ? (
-        <div id="PorodičnaPsihoanalizaDiv">
-          <h1 id="naslovUsluge">Porodična psihoanaliza</h1>
-          {porodičnaPsihoanalizaFiltered.map((item, index) => {
+          {psihoterapije.map((item, index) => {
             return (
               <div
                 key={index}
@@ -385,6 +229,11 @@ const Usluge = () => {
                     <h4>
                       <strong>Lekari:</strong>
                     </h4>
+                    {lekari.map((elem) => {
+                      if (elem.therapies.includes(item.name)) {
+                        return elem.firstName + " " + elem.lastName + ", ";
+                      }
+                    })}
                     <div></div>
                   </div>
                 </div>
@@ -396,37 +245,261 @@ const Usluge = () => {
             );
           })}
         </div>
-      ) : null}
+      ) : (
+        <div id="PsihoterapijeDiv">
+          <h1 className="naslovUsluge">Psihoterapija</h1>
 
-      {psihijatrijaDeceFiltered.length !== 0 ? (
-        <div id="PsihijatrijaDeceDiv">
-          <h1 className="naslovUsluge">Psihijatrija dece</h1>
-          {psihijatrijaDeceFiltered.map((item, index) => {
+          {psihoterapije.map((item, index) => {
+            if (therapiesOfSelectedDoctor?.includes(item.name)) {
+              return (
+                <div
+                  key={index}
+                  className={
+                    index % 2 == 0 ? "TerapyCard" : "TerapyCardInverse"
+                  }
+                >
+                  <div className="TerapyCardText">
+                    <h2>{item.name}</h2>
+                    <p>{item.about}</p>
+                    <div className="lekariTerapije">
+                      <h4>
+                        <strong>Lekari:</strong>
+                      </h4>{" "}
+                      {lekari.map((elem) => {
+                        if (elem.therapies.includes(item.name)) {
+                          return elem.firstName + " " + elem.lastName + ", ";
+                        }
+                      })}
+                      <div></div>
+                    </div>
+                  </div>
+                  <div className="TerapyCardImg">
+                    <img className="therapyImg" src={item.img} />
+                    <div className="grayBackgroundDiv"></div>
+                  </div>
+                </div>
+              );
+            }
+          })}
+        </div>
+      )}
+
+      {filterSelec.length === 0 ? (
+        <div id="GrupnaAnalitičkaPsihoterpijaDiv">
+          <h1 className="naslovUsluge">Grupna Analitička Psihoterpija</h1>
+
+          {grupnaAnalitičkaPsihoterpija.map((item, index) => {
             return (
               <div
                 key={index}
                 className={index % 2 == 0 ? "TerapyCard" : "TerapyCardInverse"}
               >
                 <div className="TerapyCardText">
-                  <h2>{item.ime}</h2>
-                  <p>{item.text}</p>
+                  <h2>{item.name}</h2>
+                  <p>{item.about}</p>
                   <div className="lekariTerapije">
                     <h4>
                       <strong>Lekari:</strong>
-                    </h4>
+                    </h4>{" "}
+                    {lekari.map((elem) => {
+                      if (elem.therapies.includes(item.name)) {
+                        return elem.firstName + " " + elem.lastName + ", ";
+                      }
+                    })}
                     <div></div>
                   </div>
                 </div>
-
                 <div className="TerapyCardImg">
-                  <img className="therapyImg" src={item.slika} />
+                  <img className="therapyImg" src={item.img} />
                   <div className="grayBackgroundDiv"></div>
                 </div>
               </div>
             );
           })}
         </div>
-      ) : null}
+      ) : (
+        <div id="GrupnaAnalitičkaPsihoterpijaDiv">
+          <h1 className="naslovUsluge">Grupna Analitička Psihoterpija</h1>
+
+          {grupnaAnalitičkaPsihoterpija.map((item, index) => {
+            if (therapiesOfSelectedDoctor?.includes(item.name)) {
+              return (
+                <div
+                  key={index}
+                  className={
+                    index % 2 == 0 ? "TerapyCard" : "TerapyCardInverse"
+                  }
+                >
+                  <div className="TerapyCardText">
+                    <h2>{item.name}</h2>
+                    <p>{item.about}</p>
+                    <div className="lekariTerapije">
+                      <h4>
+                        <strong>Lekari:</strong>
+                      </h4>{" "}
+                      {lekari.map((elem) => {
+                        if (elem.therapies.includes(item.name)) {
+                          return elem.firstName + " " + elem.lastName + ", ";
+                        }
+                      })}
+                      <div></div>
+                    </div>
+                  </div>
+                  <div className="TerapyCardImg">
+                    <img className="therapyImg" src={item.img} />
+                    <div className="grayBackgroundDiv"></div>
+                  </div>
+                </div>
+              );
+            }
+          })}
+        </div>
+      )}
+
+      {filterSelec.length === 0 ? (
+        <div id="PorodičnaPsihoanalizaDiv">
+          <h1 className="naslovUsluge">Porodična Psihoanaliza</h1>
+
+          {porodičnaPsihoanaliza.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className={index % 2 == 0 ? "TerapyCard" : "TerapyCardInverse"}
+              >
+                <div className="TerapyCardText">
+                  <h2>{item.name}</h2>
+                  <p>{item.about}</p>
+                  <div className="lekariTerapije">
+                    <h4>
+                      <strong>Lekari:</strong>
+                    </h4>{" "}
+                    {lekari.map((elem) => {
+                      if (elem.therapies.includes(item.name)) {
+                        return elem.firstName + " " + elem.lastName + ", ";
+                      }
+                    })}
+                    <div></div>
+                  </div>
+                </div>
+                <div className="TerapyCardImg">
+                  <img className="therapyImg" src={item.img} />
+                  <div className="grayBackgroundDiv"></div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div id="PorodičnaPsihoanalizaDiv">
+          <h1 className="naslovUsluge">Porodična Psihoanaliza</h1>
+
+          {porodičnaPsihoanaliza.map((item, index) => {
+            if (therapiesOfSelectedDoctor?.includes(item.name)) {
+              return (
+                <div
+                  key={index}
+                  className={
+                    index % 2 == 0 ? "TerapyCard" : "TerapyCardInverse"
+                  }
+                >
+                  <div className="TerapyCardText">
+                    <h2>{item.name}</h2>
+                    <p>{item.about}</p>
+                    <div className="lekariTerapije">
+                      <h4>
+                        <strong>Lekari:</strong>{" "}
+                      </h4>{" "}
+                      {lekari.map((elem) => {
+                        if (elem.therapies.includes(item.name)) {
+                          return elem.firstName + " " + elem.lastName + ", ";
+                        }
+                      })}
+                      <div></div>
+                    </div>
+                  </div>
+                  <div className="TerapyCardImg">
+                    <img className="therapyImg" src={item.img} />
+                    <div className="grayBackgroundDiv"></div>
+                  </div>
+                </div>
+              );
+            }
+          })}
+        </div>
+      )}
+
+      {filterSelec.length === 0 ? (
+        <div id="PsihijatrijaDeceDiv">
+          <h1 className="naslovUsluge">Psihijatrija dece</h1>
+
+          {psihijatrijaDece.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className={index % 2 == 0 ? "TerapyCard" : "TerapyCardInverse"}
+              >
+                <div className="TerapyCardText">
+                  <h2>{item.name}</h2>
+                  <p>{item.about}</p>
+                  <div className="lekariTerapije">
+                    <h4>
+                      <strong>Lekari:</strong>{" "}
+                    </h4>{" "}
+                    {lekari.map((elem) => {
+                      if (elem.therapies.includes(item.name)) {
+                        return elem.firstName + " " + elem.lastName + ", ";
+                      }
+                    })}
+                    <div></div>
+                  </div>
+                </div>
+                <div className="TerapyCardImg">
+                  <img className="therapyImg" src={item.img} />
+                  <div className="grayBackgroundDiv"></div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div id="PsihijatrijaDeceDiv">
+          <h1 className="naslovUsluge">Psihijatrija dece</h1>
+
+          {psihijatrijaDece.map((item, index) => {
+            if (therapiesOfSelectedDoctor?.includes(item.name)) {
+              return (
+                <div
+                  key={index}
+                  className={
+                    index % 2 == 0 ? "TerapyCard" : "TerapyCardInverse"
+                  }
+                >
+                  <div className="TerapyCardText">
+                    <h2>{item.name}</h2>
+                    <p>{item.about}</p>
+                    <div className="lekariTerapije">
+                      <h4>
+                        <strong>Lekari:</strong>
+                      </h4>{" "}
+                      {lekari.map((elem) => {
+                        if (elem.therapies.includes(item.name)) {
+                          return elem.firstName + " " + elem.lastName + ", ";
+                        }
+                      })}
+                      <div></div>
+                    </div>
+                  </div>
+                  <div className="TerapyCardImg">
+                    <img className="therapyImg" src={item.img} />
+                    <div className="grayBackgroundDiv"></div>
+                  </div>
+                </div>
+              );
+            }
+          })}
+        </div>
+      )}
+
       <Footer />
     </div>
   );

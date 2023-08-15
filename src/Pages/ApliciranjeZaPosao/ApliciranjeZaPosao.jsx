@@ -125,6 +125,7 @@ const ApliciranjeZaPosao = () => {
       setDoctorData({ ...doctorData, therapies: allchecked });
     }
   }, [allchecked]);
+
   const validateInputs = () => {
     validationArray.firstName ||
     validationArray.lastName ||
@@ -138,6 +139,7 @@ const ApliciranjeZaPosao = () => {
       ? setValidSubmit(false)
       : setValidSubmit(true);
   };
+
   const getTherapys = async () => {
     try {
       dispatch(showLoading);
@@ -156,9 +158,11 @@ const ApliciranjeZaPosao = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getTherapys();
   }, []);
+
   const handleCheckedTherapies = (e) => {
     if (e.target.checked) {
       setAllChecked([...allchecked, e.target.value]);

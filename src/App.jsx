@@ -19,6 +19,7 @@ import ApliciranjeZaPosao from "./Pages/ApliciranjeZaPosao/ApliciranjeZaPosao";
 import DoctorProfil from "./Pages/Doctor/DoctorProfil/DoctorProfil";
 import ZahteviZaTermin from "./Pages/Doctor/Zahtevi/ZahteviZaTermin";
 import ZakazaniTermini from "./Pages/Doctor/ZakazaniTermini/ZakazaniTermini";
+import OurTeam from "./Pages/OurTeam/OurTeam";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -62,6 +63,14 @@ function App() {
             element={
               <PublicRoute>
                 <Usluge />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="ourteam"
+            element={
+              <PublicRoute>
+                <OurTeam />
               </PublicRoute>
             }
           />

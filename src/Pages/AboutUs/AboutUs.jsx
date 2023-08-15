@@ -43,6 +43,7 @@ const AboutUs = () => {
       id: 4,
     },
   ]);
+
   const [lekari, setLekari] = useState();
   const getDoctors = async () => {
     try {
@@ -138,12 +139,14 @@ const AboutUs = () => {
           <div className="ProfessionalStaffImagesDiv">
             {lekari?.map((i, index) => {
               return (
-                <img key={index} className="StaffImg" src="dr1.png" alt="o1" />
+                <img key={index} className="StaffImg" src={i.img} alt="o1" />
               );
             })}
           </div>
         </div>
-        <button>Više o timu</button>
+        <Link to={"/ourteam"}>
+          <button>Više o timu</button>
+        </Link>
       </div>
 
       <div className="TerapyField">
