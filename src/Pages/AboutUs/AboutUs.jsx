@@ -6,7 +6,7 @@ import "./AboutUs.scss";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-
+import { Image } from "cloudinary-react";
 import { useState } from "react";
 
 const AboutUs = () => {
@@ -61,7 +61,7 @@ const AboutUs = () => {
   useEffect(() => {
     getDoctors();
   }, []);
-  console.log(lekari);
+
   return (
     <div id="AboutUsMain">
       <Navbar />
@@ -110,10 +110,11 @@ const AboutUs = () => {
               <strong> 09:00 - 13:00</strong>
             </p>
           </div>
-          <button>Kontaktiraj nas</button>
+          <Link to={"/kontakt"}>
+            <button>Kontaktiraj nas</button>
+          </Link>
         </div>
-        <img className="ZastoMiImg1" src="zastoMiImg.jpg" alt="slika" />
-        <img className="ZastoMiImg2" src="zastoMiImg2.jpg" alt="slika" />
+        <img className="ZastoMiImg1" src="onamaruke.jpg" alt="slika" />
       </div>
 
       <div className="OurTeamDiv">
@@ -138,9 +139,17 @@ const AboutUs = () => {
           <h1 className="naslov">Stručno osoblje</h1>
           <div className="ProfessionalStaffImagesDiv">
             {lekari?.map((i, index) => {
-              return (
-                <img key={index} className="StaffImg" src={i.img} alt="o1" />
-              );
+              if (i.status === "approved" && i.archived === "false") {
+                return (
+                  <Image
+                    key={index}
+                    className="StaffImg"
+                    cloudName={"dlxwesw2p"}
+                    publicId={i.img}
+                    alt="o1"
+                  />
+                );
+              }
             })}
           </div>
         </div>

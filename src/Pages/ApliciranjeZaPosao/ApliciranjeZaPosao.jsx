@@ -13,6 +13,8 @@ const ApliciranjeZaPosao = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const [previewSorce, setPreviewSorce] = useState();
+  const [fileInputState, setFileInputState] = useState("");
 
   const [doctorData, setDoctorData] = useState({
     firstName: "",
@@ -71,9 +73,6 @@ const ApliciranjeZaPosao = () => {
       });
     }
   }, [doctorData.timings]);
-  useEffect(() => {
-    console.log(doctorData);
-  }, [doctorData]);
 
   const handleSubmit = async (e) => {
     try {
@@ -83,7 +82,7 @@ const ApliciranjeZaPosao = () => {
 
         const response = await axios.post(
           "http://localhost:5000/api/user/doctor-apply",
-          { ...doctorData, userId: user.id },
+          { ...doctorData, userId: user.id, img: previewSorce },
           {
             headers: {
               authorization: "Bearer " + localStorage.getItem("token"),
@@ -106,6 +105,7 @@ const ApliciranjeZaPosao = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     validateInputs();
   }, [validationArray]);
@@ -135,7 +135,8 @@ const ApliciranjeZaPosao = () => {
     validationArray.specialization ||
     validationArray.experience ||
     validationArray.feePerConsultation ||
-    validationArray.timings
+    validationArray.timings ||
+    !previewSorce
       ? setValidSubmit(false)
       : setValidSubmit(true);
   };
@@ -170,6 +171,21 @@ const ApliciranjeZaPosao = () => {
       setAllChecked(allchecked.filter((item) => item !== e.target.value));
     }
   };
+
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    previewFile(file);
+  };
+
+  const previewFile = (file) => {
+    console.log(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPreviewSorce(reader.result);
+    };
+  };
+  console.log(user);
 
   return (
     <div id="apliciranjeMain">
@@ -349,6 +365,30 @@ const ApliciranjeZaPosao = () => {
                 }}
               />
             </Space>
+          </div>
+          <div className="inputDivTerapies">
+            <label htmlFor="feePerConsultation">
+              <p className={previewSorce ? "correctClass " : "errorClass"}>
+                *Slika
+              </p>
+            </label>
+            <div className="addImgDiv">
+              {previewSorce ? (
+                <img
+                  className="uploadedImg"
+                  src={previewSorce}
+                  width="100"
+                  height="100"
+                />
+              ) : null}
+              <input
+                type="file"
+                name="image"
+                onChange={handleFileInputChange}
+                className="fileInput"
+                value={fileInputState}
+              />
+            </div>
           </div>
           <div className="inputDivTerapies">
             <label htmlFor="feePerConsultation">

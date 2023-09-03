@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
+
   const getData = async () => {
     try {
       const response = await axios.post(
@@ -48,12 +49,12 @@ const Navbar = () => {
             </li>
 
             <li>
-              <a href="#">Kontakt</a>
+              <Link to={"/kontakt"}>Kontakt</Link>
             </li>
             <li>
               {user?.isAdmin || user?.isDoctor ? null : localStorage.getItem(
                   "token"
-                ) ? (
+                ) && user?.verified ? (
                 <Link to={"/zakazivanje"}>Zakaži termin</Link>
               ) : (
                 <Link to={"/prijava"}>Zakaži termin</Link>
@@ -62,7 +63,7 @@ const Navbar = () => {
             <li>
               {user?.isAdmin || user?.isDoctor ? null : localStorage.getItem(
                   "token"
-                ) ? (
+                ) && user?.verified ? (
                 <Link to={"/apliciranje"}>Apliciraj za posao</Link>
               ) : (
                 <Link to={"/prijava"}>Apliciraj za posao</Link>
@@ -73,17 +74,17 @@ const Navbar = () => {
       </div>
 
       <div className="menu-item2">
-        {user?.isAdmin ? (
+        {user?.isAdmin && user?.verified ? (
           <Link className={"navLink"} to={"/korisnici"}>
             Kontrolna tabla
           </Link>
         ) : null}
-        {user?.isDoctor ? (
+        {user?.isDoctor && user?.verified ? (
           <Link className={"navLink"} to={"/doctorprofil"}>
             Radni prostor
           </Link>
         ) : null}
-        {user ? (
+        {user && user?.verified ? (
           <Link to={"/prijava"}>
             <button>
               <p>Odjavi se </p>

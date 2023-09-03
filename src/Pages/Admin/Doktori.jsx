@@ -9,11 +9,14 @@ import axios from "axios";
 import "./admin.scss";
 import { toast } from "react-hot-toast";
 import { TimePicker, Space } from "antd";
+import { Image } from "cloudinary-react";
 
+// require("dotenv").config();
 const Doktori = () => {
+  const [previewSorce, setPreviewSorce] = useState();
   const [doctor, setDoctor] = useState([]);
   const [deleteDoctorDivShowing, setDeleteDoctorDivShowing] = useState(false);
-  const [newDoctorInfo, setNewDoctroInfo] = useState({
+  const [newDoctorInfo, setNewDoctorInfo] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -25,15 +28,35 @@ const Doktori = () => {
     timings: null,
     therapies: null,
   });
+
+  const [imageChangeCard, setImageChangeCard] = useState(false);
   const [changeDoctorDivShowing, setChangeDoctorDivShowing] = useState(false);
-  const [showNewDoctorCard, setShowNewDoctorCard] = useState(true);
+  const [showNewDoctorCard, setShowNewDoctorCard] = useState(false);
   const [doctorID, setDoctorID] = useState("");
+  const [doctorImgCloudUrl, setDoctorImgCloudUrl] = useState("");
+
   const [userID, setUserID] = useState("");
   const [changedDoctorValues, setChangedDoctorValues] = useState("");
   const [allchecked, setAllChecked] = useState([]);
   const [therapies, setTherapies] = useState([]);
   const dispatch = useDispatch();
-
+  const [validationArray, setValidationArray] = useState({
+    firstName: true,
+    lastName: true,
+    email: true,
+    phoneNumber: true,
+    address: true,
+    specialization: true,
+    experience: true,
+    feePerConsultation: true,
+    timings: true,
+    therapies: true,
+    password: true,
+  });
+  const [doktorsStatus, setDoktorsStatus] = useState("approved");
+  const [validSubmit, setValidSubmit] = useState(false);
+  const [fileInputState, setFileInputState] = useState("");
+  const [selectedFile, setSelectedFile] = useState("");
   const getDoctors = async () => {
     try {
       dispatch(showLoading);
@@ -52,6 +75,7 @@ const Doktori = () => {
       console.log(error);
     }
   };
+
   const getTherapys = async () => {
     try {
       dispatch(showLoading);
@@ -70,19 +94,9 @@ const Doktori = () => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    getDoctors();
-    getTherapys();
-  }, []);
-
-  useEffect(() => {
-    console.log(changedDoctorValues);
-  }, [changedDoctorValues]);
 
   const deleteDoctor = async () => {
     try {
-      console.log(doctorID);
-
       dispatch(showLoading);
       const response = await axios.post(
         "http://localhost:5000/api/admin/delete-doctor",
@@ -124,6 +138,7 @@ const Doktori = () => {
       [e.target.name]: e.target.value,
     });
   };
+
   const changeDoctorInfo = async () => {
     try {
       dispatch(showLoading);
@@ -146,8 +161,20 @@ const Doktori = () => {
     } catch (error) {}
     setChangeDoctorDivShowing(false);
   };
-  const onChangeInputNewDoctor = () => {
-    setDoctorData({ ...doctorData, [e.target.name]: e.target.value });
+
+  const onChangeInputNewDoctor = (e) => {
+    if (e.target.value !== "") {
+      setValidationArray({
+        ...validationArray,
+        [e.target.name]: false,
+      });
+      setNewDoctorInfo({ ...newDoctorInfo, [e.target.name]: e.target.value });
+    } else {
+      setValidationArray({
+        ...validationArray,
+        [e.target.name]: true,
+      });
+    }
   };
 
   const handleCheckedTherapiesNewDoctor = (e) => {
@@ -157,6 +184,161 @@ const Doktori = () => {
       setAllChecked(allchecked.filter((item) => item !== e.target.value));
     }
   };
+
+  const handleSubmit = async (e) => {
+    setShowNewDoctorCard(false);
+    try {
+      e.preventDefault();
+      if (validSubmit) {
+        dispatch(showLoading());
+
+        const response = await axios.post(
+          "http://localhost:5000/api/admin//create-new-doctor",
+          { ...newDoctorInfo, img: previewSorce },
+          {
+            headers: {
+              authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        );
+
+        dispatch(hideLoading());
+        console.log(response, "RESPONSE!");
+        if (response.data.success) {
+          toast.success(response.data.message);
+
+          setNewDoctorInfo({
+            firstName: "",
+            lastName: "",
+            email: "",
+            phoneNumber: "",
+            address: "",
+            specialization: "",
+            experience: "",
+            feePerConsultation: "",
+            timings: null,
+            therapies: null,
+          });
+          setValidationArray({
+            firstName: true,
+            lastName: true,
+            email: true,
+            phoneNumber: true,
+            address: true,
+            specialization: true,
+            experience: true,
+            feePerConsultation: true,
+            timings: true,
+            therapies: true,
+            password: true,
+          });
+          getDoctors();
+        } else {
+          toast.error(response.data.message);
+        }
+      } else toast.error("Molimo vas ispunite sva polja");
+    } catch (error) {
+      dispatch(hideLoading());
+      toast.error("doslo je do greske pokusajte kasnije");
+      console.log(error);
+    }
+  };
+
+  const validateInputs = () => {
+    validationArray.firstName ||
+    validationArray.lastName ||
+    validationArray.email ||
+    validationArray.phoneNumber ||
+    validationArray.address ||
+    validationArray.specialization ||
+    validationArray.experience ||
+    validationArray.feePerConsultation ||
+    validationArray.timings ||
+    validationArray.password ||
+    validationArray.therapies
+      ? setValidSubmit(false)
+      : setValidSubmit(true);
+  };
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+
+    previewFile(file);
+  };
+  const previewFile = (file) => {
+    console.log(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPreviewSorce(reader.result);
+    };
+  };
+  const handleSubmitFile = (e) => {
+    setImageChangeCard(false);
+    e.preventDefault();
+    if (!previewSorce) return;
+    uploadImg(previewSorce);
+  };
+  const uploadImg = async (img) => {
+    try {
+      console.log(previewSorce);
+      dispatch(showLoading);
+      const response = await axios.post(
+        "http://localhost:5000/api/admin/upload-doctor-img",
+        { imgUrl: previewSorce, doctorId: doctorID },
+        {
+          headers: {
+            authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      dispatch(hideLoading);
+      getDoctors();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (allchecked.length === 0) {
+      setValidationArray({
+        ...validationArray,
+        therapies: true,
+      });
+    } else {
+      setValidationArray({
+        ...validationArray,
+        therapies: false,
+      });
+    }
+  }, [, allchecked]);
+
+  useEffect(() => {
+    if (newDoctorInfo.timings === null) {
+      setValidationArray({
+        ...validationArray,
+        timings: true,
+      });
+    } else {
+      setValidationArray({
+        ...validationArray,
+        timings: false,
+      });
+    }
+  }, [newDoctorInfo.timings]);
+  useEffect(() => {
+    validateInputs();
+  }, [validationArray]);
+
+  useEffect(() => {
+    getDoctors();
+    getTherapys();
+  }, []);
+
+  useEffect(() => {
+    setNewDoctorInfo({ ...newDoctorInfo, therapies: allchecked });
+  }, [allchecked]);
+  console.log(doctorID);
+
   return (
     <div id="adminMain">
       <div className="WorkSpace">
@@ -166,70 +348,288 @@ const Doktori = () => {
           <div className="listaDoktora">
             <h1>Lista doktora</h1>
             <div className="AddNewDoctorDiv">
-              <button className="AddNewDoctorBtn">Dodaj doktora</button>
+              <div className="changePageStatusDiv">
+                <p
+                  onClick={() => {
+                    setDoktorsStatus("approved");
+                  }}
+                >
+                  Aktivni
+                </p>
+                <p
+                  onClick={() => {
+                    setDoktorsStatus("rejected");
+                  }}
+                >
+                  Odbijeni
+                </p>
+                <p
+                  onClick={() => {
+                    setDoktorsStatus("archived");
+                  }}
+                >
+                  Arhivirani
+                </p>
+              </div>
+              <button
+                className="AddNewDoctorBtn"
+                onClick={() => {
+                  setShowNewDoctorCard(true);
+                }}
+              >
+                Dodaj doktora
+              </button>
             </div>
-            <div className="DivForDoktorCards">
-              {doctor.map((item, index) => {
-                return (
-                  <div key={index} className="doctorCard">
-                    <img src="dr1.png" />
-                    <div className="rightFieldDoctorCard">
-                      <h3>
-                        {item.firstName} {item.lastName}
-                      </h3>
-                      <p>Email: {item.email}</p>
-                      <p>Broj telefona: {item.phoneNumber}</p>
-                      <p>Specijalizacija: {item.specialization}</p>
-                      <p>Status: {item.status}</p>
-                      <div className="TerapijeZahteva">
-                        Terapije:
-                        {item.therapies.map((elem, index) => {
-                          return item.therapies.length - 1 === index ? (
-                            <div key={index}>{elem}</div>
-                          ) : (
-                            <div key={index}>{elem},</div>
-                          );
-                        })}{" "}
-                      </div>
-                      <p>
-                        Radno vreme:{" "}
-                        {item.timings && item.timings[0][0] < 9 ? "0" : null}
-                        {item.timings ? item.timings[0][0] : null}:
-                        {item.timings && item.timings[0][1] < 9 ? "0" : null}
-                        {item.timings ? item?.timings[0][1] : null}-
-                        {item.timings && item.timings[1][0] < 9 ? "0" : null}
-                        {item.timings ? item.timings[1][0] : null}:
-                        {item.timings && item.timings[1][1] < 9 ? "0" : null}
-                        {item.timings ? item?.timings[1][1] : null}
-                      </p>
+            {doktorsStatus === "approved" ? (
+              <div className="DivForApprovedDoktorCards">
+                {doctor.map((item, index) => {
+                  if (item.status === "approved" && item.archived === "false") {
+                    return (
+                      <div key={index} className="doctorCard">
+                        <Image
+                          className="doctorCardImg"
+                          cloudName={"dlxwesw2p"}
+                          publicId={item.img}
+                          onClick={() => {
+                            setImageChangeCard(true);
+                            setDoctorID(item._id);
+                            setDoctorImgCloudUrl(item.img);
+                          }}
+                        />
 
-                      <div className="DoctorCardTherapy"></div>
-                      <div className="doctorBtnsDiv">
-                        <button
-                          onClick={() => {
-                            setChangeDoctorDivShowing(true);
-                            setChangedDoctorValues((prevState) => ({
-                              ...prevState,
-                              ...item,
-                            }));
-                          }}
-                        >
-                          Izmeni
-                        </button>
-                        <button
-                          className="deleteBtn"
-                          onClick={() => {
-                            showingDeleteDiv(item._id, item.userId);
-                          }}
-                        >
-                          Izbrisi
-                        </button>
+                        <div className="rightFieldDoctorCard">
+                          <h3>
+                            {item.firstName} {item.lastName}
+                          </h3>
+                          <p>Email: {item.email}</p>
+                          <p>Broj telefona: {item.phoneNumber}</p>
+                          <p>Specijalizacija: {item.specialization}</p>
+                          <p>Status: {item.status}</p>
+                          <div className="TerapijeZahteva">
+                            Terapije:
+                            {item.therapies.map((elem, index) => {
+                              return item.therapies.length - 1 === index ? (
+                                <div key={index}>{elem}</div>
+                              ) : (
+                                <div key={index}>{elem},</div>
+                              );
+                            })}{" "}
+                          </div>
+                          <p>
+                            Radno vreme:{" "}
+                            {item.timings && item.timings[0][0] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item.timings[0][0] : null}:
+                            {item.timings && item.timings[0][1] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item?.timings[0][1] : null}-
+                            {item.timings && item.timings[1][0] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item.timings[1][0] : null}:
+                            {item.timings && item.timings[1][1] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item?.timings[1][1] : null}
+                          </p>
+
+                          <div className="DoctorCardTherapy"></div>
+                          <div className="doctorBtnsDiv">
+                            <button
+                              onClick={() => {
+                                setChangeDoctorDivShowing(true);
+                                setChangedDoctorValues((prevState) => ({
+                                  ...prevState,
+                                  ...item,
+                                }));
+                              }}
+                            >
+                              Izmeni
+                            </button>
+                            <button
+                              className="deleteBtn"
+                              onClick={() => {
+                                showingDeleteDiv(item._id, item.userId);
+                              }}
+                            >
+                              Izbrisi
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                    );
+                  }
+                })}
+              </div>
+            ) : null}
+            {doktorsStatus === "rejected" ? (
+              <div className="DivForRejectedDoktorCards">
+                {doctor.map((item, index) => {
+                  if (item.status === "rejected" && item.archived === "false") {
+                    return (
+                      <div key={index} className="doctorCard">
+                        <Image
+                          className="doctorCardImg"
+                          cloudName={"dlxwesw2p"}
+                          publicId={item.img}
+                          onClick={() => {
+                            setImageChangeCard(true);
+                            setDoctorID(item._id);
+                            setDoctorImgCloudUrl(item.img);
+                          }}
+                        />
+                        <div className="rightFieldDoctorCard">
+                          <h3>
+                            {item.firstName} {item.lastName}
+                          </h3>
+                          <p>Email: {item.email}</p>
+                          <p>Broj telefona: {item.phoneNumber}</p>
+                          <p>Specijalizacija: {item.specialization}</p>
+                          <p>Status: {item.status}</p>
+                          <div className="TerapijeZahteva">
+                            Terapije:
+                            {item.therapies.map((elem, index) => {
+                              return item.therapies.length - 1 === index ? (
+                                <div key={index}>{elem}</div>
+                              ) : (
+                                <div key={index}>{elem},</div>
+                              );
+                            })}{" "}
+                          </div>
+                          <p>
+                            Radno vreme:{" "}
+                            {item.timings && item.timings[0][0] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item.timings[0][0] : null}:
+                            {item.timings && item.timings[0][1] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item?.timings[0][1] : null}-
+                            {item.timings && item.timings[1][0] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item.timings[1][0] : null}:
+                            {item.timings && item.timings[1][1] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item?.timings[1][1] : null}
+                          </p>
+
+                          <div className="DoctorCardTherapy"></div>
+                          <div className="doctorBtnsDiv">
+                            <button
+                              onClick={() => {
+                                setChangeDoctorDivShowing(true);
+                                setChangedDoctorValues((prevState) => ({
+                                  ...prevState,
+                                  ...item,
+                                }));
+                              }}
+                            >
+                              Izmeni
+                            </button>
+                            <button
+                              className="deleteBtn"
+                              onClick={() => {
+                                showingDeleteDiv(item._id, item.userId);
+                              }}
+                            >
+                              Izbrisi
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            ) : null}
+            {doktorsStatus === "archived" ? (
+              <div className="DivForArchivedDoktorCards">
+                {doctor.map((item, index) => {
+                  if (item.archived === "true") {
+                    return (
+                      <div key={index} className="doctorCard">
+                        <Image
+                          className="doctorCardImg"
+                          cloudName={"dlxwesw2p"}
+                          publicId={item.img}
+                          onClick={() => {
+                            setImageChangeCard(true);
+                            setDoctorID(item._id);
+                            setDoctorImgCloudUrl(item.img);
+                          }}
+                        />
+                        <div className="rightFieldDoctorCard">
+                          <h3>
+                            {item.firstName} {item.lastName}
+                          </h3>
+                          <p>Email: {item.email}</p>
+                          <p>Broj telefona: {item.phoneNumber}</p>
+                          <p>Specijalizacija: {item.specialization}</p>
+                          <p>Status: {item.status}</p>
+                          <div className="TerapijeZahteva">
+                            Terapije:
+                            {item.therapies.map((elem, index) => {
+                              return item.therapies.length - 1 === index ? (
+                                <div key={index}>{elem}</div>
+                              ) : (
+                                <div key={index}>{elem},</div>
+                              );
+                            })}{" "}
+                          </div>
+                          <p>
+                            Radno vreme:{" "}
+                            {item.timings && item.timings[0][0] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item.timings[0][0] : null}:
+                            {item.timings && item.timings[0][1] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item?.timings[0][1] : null}-
+                            {item.timings && item.timings[1][0] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item.timings[1][0] : null}:
+                            {item.timings && item.timings[1][1] <= 9
+                              ? "0"
+                              : null}
+                            {item.timings ? item?.timings[1][1] : null}
+                          </p>
+
+                          <div className="DoctorCardTherapy"></div>
+                          <div className="doctorBtnsDiv">
+                            <button
+                              onClick={() => {
+                                setChangeDoctorDivShowing(true);
+                                setChangedDoctorValues((prevState) => ({
+                                  ...prevState,
+                                  ...item,
+                                }));
+                              }}
+                            >
+                              Izmeni
+                            </button>
+                            <button
+                              className="deleteBtn"
+                              onClick={() => {
+                                showingDeleteDiv(item._id, item.userId);
+                              }}
+                            >
+                              Izbrisi
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -396,12 +796,53 @@ const Doktori = () => {
       {showNewDoctorCard ? (
         <div id="newDoctorMain">
           <div className="formDiv">
+            <div className="iconDivNewDoctor">
+              <img
+                src="x.png"
+                alt="X"
+                onClick={() => {
+                  setShowNewDoctorCard(false);
+                  setNewDoctorInfo({
+                    firstName: "",
+                    lastName: "",
+                    email: "",
+                    phoneNumber: "",
+                    address: "",
+                    specialization: "",
+                    experience: "",
+                    feePerConsultation: "",
+                    timings: null,
+                    therapies: null,
+                  });
+                  setValidationArray({
+                    firstName: true,
+                    lastName: true,
+                    email: true,
+                    phoneNumber: true,
+                    address: true,
+                    specialization: true,
+                    experience: true,
+                    feePerConsultation: true,
+                    timings: true,
+                    therapies: true,
+                    password: true,
+                  });
+                }}
+              />
+            </div>
             <h1>Apliciraj za posao</h1>
             <div className="formMiddleLine"></div>
+
             <div className="fieldAboveCenterLine">
               <div className="inputDiv">
                 <label htmlFor="firstName">
-                  <p className={"correctClass"}>*Ime</p>
+                  <p
+                    className={
+                      validationArray.firstName ? "errorClass" : "correctClass"
+                    }
+                  >
+                    *Ime
+                  </p>
                 </label>
                 <input
                   type="text"
@@ -412,7 +853,13 @@ const Doktori = () => {
               </div>
               <div className="inputDiv">
                 <label htmlFor="lastName">
-                  <p className={"correctClass"}>*Prezime</p>
+                  <p
+                    className={
+                      validationArray.lastName ? "errorClass" : "correctClass"
+                    }
+                  >
+                    *Prezime
+                  </p>
                 </label>
                 <input
                   type="text"
@@ -423,7 +870,13 @@ const Doktori = () => {
               </div>
               <div className="inputDiv">
                 <label htmlFor="email">
-                  <p className={"correctClass"}>*Email</p>
+                  <p
+                    className={
+                      validationArray.email ? "errorClass" : "correctClass"
+                    }
+                  >
+                    *Email
+                  </p>
                 </label>
                 <input
                   type="email"
@@ -434,7 +887,15 @@ const Doktori = () => {
               </div>
               <div className="inputDiv">
                 <label htmlFor="phoneNumber">
-                  <p className={"correctClass"}>*Broj telefona</p>
+                  <p
+                    className={
+                      validationArray.phoneNumber
+                        ? "errorClass"
+                        : "correctClass"
+                    }
+                  >
+                    *Broj telefona
+                  </p>
                 </label>
                 <input
                   type="text"
@@ -445,7 +906,13 @@ const Doktori = () => {
               </div>
               <div className="inputDiv">
                 <label htmlFor="address">
-                  <p className={"correctClass"}>*Adresa</p>
+                  <p
+                    className={
+                      validationArray.address ? "errorClass" : "correctClass"
+                    }
+                  >
+                    *Adresa
+                  </p>
                 </label>
                 <input
                   type="text"
@@ -459,7 +926,15 @@ const Doktori = () => {
             <div className="fieldBelowCenterLine">
               <div className="inputDiv">
                 <label htmlFor="specialization">
-                  <p className={"correctClass"}>*Specijalizacija</p>
+                  <p
+                    className={
+                      validationArray.specialization
+                        ? "errorClass"
+                        : "correctClass"
+                    }
+                  >
+                    *Specijalizacija
+                  </p>
                 </label>
                 <input
                   type="text"
@@ -470,7 +945,13 @@ const Doktori = () => {
               </div>
               <div className="inputDiv">
                 <label htmlFor="experience">
-                  <p className={"correctClass"}>*Godine iskustva</p>
+                  <p
+                    className={
+                      validationArray.experience ? "errorClass" : "correctClass"
+                    }
+                  >
+                    *Godine iskustva
+                  </p>
                 </label>
                 <input
                   type="number"
@@ -481,7 +962,15 @@ const Doktori = () => {
               </div>
               <div className="inputDiv">
                 <label htmlFor="feePerConsultation">
-                  <p className={"correctClass"}>*Cena pregleda</p>
+                  <p
+                    className={
+                      validationArray.feePerConsultation
+                        ? "errorClass"
+                        : "correctClass"
+                    }
+                  >
+                    *Cena pregleda
+                  </p>
                 </label>
                 <input
                   type="text"
@@ -493,7 +982,13 @@ const Doktori = () => {
 
               <div className="timePickerDiv">
                 <label htmlFor="experience">
-                  <p className={"correctClass"}>*Radno vreme</p>
+                  <p
+                    className={
+                      validationArray.timings ? "errorClass" : "correctClass"
+                    }
+                  >
+                    *Radno vreme
+                  </p>
                 </label>
 
                 <Space wrap>
@@ -504,20 +999,67 @@ const Doktori = () => {
                     size={"large"}
                     onChange={(Time) => {
                       console.log(Time);
-                      let timeTemp = doctorData;
+                      let timeTemp = newDoctorInfo;
                       timeTemp.timings = [
                         [Time[0].$H, Time[0].$m],
                         [Time[1].$H, Time[1].$m],
                       ];
 
-                      setDoctorData({ ...timeTemp });
+                      setNewDoctorInfo({ ...timeTemp });
                     }}
                   />
                 </Space>
               </div>
+              <div className="inputPassDiv">
+                <label htmlFor="password">
+                  <p
+                    className={
+                      validationArray.password ? "errorClass" : "correctClass"
+                    }
+                  >
+                    *Password
+                  </p>
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Sifra"
+                  onChange={onChangeInputNewDoctor}
+                />
+              </div>
               <div className="inputDivTerapies">
                 <label htmlFor="feePerConsultation">
-                  <p className={"correctClass"}>*Terapije</p>
+                  <p className={previewSorce ? "correctClass " : "errorClass"}>
+                    *Slika
+                  </p>
+                </label>
+                <div className="addImgDiv">
+                  {previewSorce ? (
+                    <img
+                      className="uploadedImg"
+                      src={previewSorce}
+                      width="100"
+                      height="100"
+                    />
+                  ) : null}
+                  <input
+                    type="file"
+                    name="image"
+                    onChange={handleFileInputChange}
+                    className="fileInput"
+                    value={fileInputState}
+                  />
+                </div>
+              </div>
+              <div className="inputDivTerapies">
+                <label htmlFor="feePerConsultation">
+                  <p
+                    className={
+                      validationArray.therapies ? "errorClass" : "correctClass"
+                    }
+                  >
+                    *Terapije
+                  </p>
                 </label>
                 <div className="terapiesCheckbox">
                   {therapies.map((item, index) => {
@@ -525,7 +1067,6 @@ const Doktori = () => {
                       <div key={index} className="therapiCheckField">
                         <input
                           value={item.name}
-                          placeholder={item.name}
                           type="checkbox"
                           onChange={handleCheckedTherapiesNewDoctor}
                         />
@@ -538,8 +1079,49 @@ const Doktori = () => {
             </div>
 
             <div className="buttonDiv">
-              <button>Kreiraj nalog doktora </button>
+              <button onClick={handleSubmit}>Kreiraj nalog doktora </button>
             </div>
+          </div>
+        </div>
+      ) : null}
+      {imageChangeCard ? (
+        <div className="changeImageDiv">
+          <div className="changeImageCard">
+            <div className="xIconDiv">
+              <img
+                className="ximg"
+                src="x.png"
+                onClick={() => {
+                  setImageChangeCard(false);
+                }}
+              />
+            </div>
+
+            <Image
+              className="drimg"
+              cloudName={"dlxwesw2p"}
+              publicId={doctorImgCloudUrl}
+              onClick={() => {
+                setImageChangeCard(true);
+                setDoctorID(item._id);
+              }}
+            />
+            {previewSorce ? (
+              <img className="arrowDown" src="arrow-down.png"></img>
+            ) : null}
+            {previewSorce ? (
+              <img className="uploadedImg" src={previewSorce} />
+            ) : null}
+            <input
+              type="file"
+              name="image"
+              onChange={handleFileInputChange}
+              className="fileInput"
+              value={fileInputState}
+            />
+            {previewSorce ? (
+              <button onClick={handleSubmitFile}> Potvrdi </button>
+            ) : null}
           </div>
         </div>
       ) : null}

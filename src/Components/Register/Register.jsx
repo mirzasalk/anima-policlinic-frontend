@@ -14,8 +14,36 @@ const Register = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [validSubmit, setValidSubmit] = useState(false);
+  const [chechValidation, setChechValidation] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const getUser = async () => {
+    try {
+      dispatch(showLoading());
+      const response = await axios.post(
+        "http://localhost:5000/api/user/get-user-info-by-id",
+        { token: localStorage.getItem("token") }, //ovo ubrzava obradu??
+        {
+          headers: {
+            authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      dispatch(hideLoading());
+
+      if (response.data.success) {
+        if (response.data.data.verified === false) {
+          setChechValidation(response.data.data.verified);
+        } else {
+          navigate("/prijava");
+        }
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      localStorage.clear();
+      console.log("greska pri registraciji");
+    }
+  };
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -33,16 +61,16 @@ const Register = () => {
         if (response.data.success) {
           console.log(response);
           toast.success(response.data.massage);
-          navigate("/prijava");
+          setChechValidation(response.data.success);
         } else {
           console.log(response);
           toast.error(response.data.massage);
+          setChechValidation(response.data.success);
         }
       } else toast.error("Molimo vas unesite ispravne podatke");
     } catch (error) {
       dispatch(hideLoading());
-
-      toast.error(response.data.massage);
+      // toast.error(response.data.massage);
       console.log(error);
     }
   };
@@ -110,6 +138,7 @@ const Register = () => {
       setConfirmPassword(e.target.value);
     }
   };
+
   return (
     <div className="register">
       <form onSubmit={handleSubmit}>
@@ -168,6 +197,12 @@ const Register = () => {
 
           <span>{confirmPasswordError}</span>
         </div>
+        {chechValidation ? (
+          <div className="verifiedDiv">
+            Na vasem Email-u je posalt link za verifikaciju,molimo vas
+            verifikujte vas Email{" "}
+          </div>
+        ) : null}
         <button>Registruj se</button>
       </form>
       <br />

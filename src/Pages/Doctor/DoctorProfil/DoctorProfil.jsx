@@ -7,7 +7,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-
+import { Image } from "cloudinary-react";
 import { hideLoading, showLoading } from "../../../redux/alertsSlice";
 import { TimePicker } from "antd";
 
@@ -17,9 +17,11 @@ const DoctorProfil = () => {
   const [changeDoctorProfilCardShow, setChangeDoctorProfilCardShow] =
     useState(false);
   const [doctorInfo, setDoctorInfo] = useState({});
-
+  const [imageChangeCard, setImageChangeCard] = useState("");
   const [allchecked, setAllChecked] = useState([]);
   const [therapies, setTherapies] = useState([]);
+  const [previewSorce, setPreviewSorce] = useState();
+  const [fileInputState, setFileInputState] = useState("");
 
   let terap = doctorInfo?.therapies;
   doctorInfo ? console.log(doctorInfo) : null;
@@ -128,10 +130,49 @@ const DoctorProfil = () => {
       console.log(error);
     }
   };
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+
+    previewFile(file);
+  };
+  const previewFile = (file) => {
+    console.log(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPreviewSorce(reader.result);
+    };
+  };
+  const handleSubmitFile = (e) => {
+    e.preventDefault();
+    setImageChangeCard(false);
+    if (!previewSorce) return;
+    uploadImg(previewSorce);
+  };
+  const uploadImg = async (img) => {
+    try {
+      console.log(previewSorce);
+      dispatch(showLoading);
+      const response = await axios.post(
+        "http://localhost:5000/api/doctor/upload-doctor-img",
+        { imgUrl: previewSorce, _id: doctorInfo._id },
+        {
+          headers: {
+            authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      dispatch(hideLoading);
+      getDoctor();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getTherapys();
   }, []);
+  console.log(doctorInfo);
   return (
     <div id="doctorMain">
       <div className="WorkSpace">
@@ -248,7 +289,6 @@ const DoctorProfil = () => {
                       placeholder={["Početka vremena", "Kraj vremena"]}
                       size={"large"}
                       onChange={(Time) => {
-                        console.log(Time);
                         const timeTemp = doctorInfo;
                         timeTemp.timings = Time;
                         setDoctorInfo({ ...timeTemp });
@@ -260,8 +300,55 @@ const DoctorProfil = () => {
               </div>
             ) : null}
 
+            {imageChangeCard ? (
+              <div className="changeImageDiv">
+                <div className="changeImageCard">
+                  <div className="xIconDiv">
+                    <img
+                      className="ximg"
+                      src="x.png"
+                      onClick={() => {
+                        setImageChangeCard(false);
+                      }}
+                    />
+                  </div>
+                  {console.log(doctorInfo.img)}
+                  <Image
+                    className="drimg"
+                    cloudName={"dlxwesw2p"}
+                    publicId={doctorInfo.img}
+                    onClick={() => {
+                      setImageChangeCard(true);
+                    }}
+                  />
+                  {previewSorce ? (
+                    <img className="arrowDown" src="arrow-down.png"></img>
+                  ) : null}
+                  {previewSorce ? (
+                    <img className="uploadedImg" src={previewSorce} />
+                  ) : null}
+                  <input
+                    type="file"
+                    name="image"
+                    onChange={handleFileInputChange}
+                    className="fileInput"
+                    value={fileInputState}
+                  />
+                  {previewSorce ? (
+                    <button onClick={handleSubmitFile}> Potvrdi </button>
+                  ) : null}
+                </div>
+              </div>
+            ) : null}
             <div className="doctorImgDiv">
-              <img className="DoctorProfilimg" src="Admin.png" />
+              <Image
+                className="DoctorProfilimg"
+                cloudName={"dlxwesw2p"}
+                publicId={doctorInfo?.img}
+                onClick={() => {
+                  setImageChangeCard(true);
+                }}
+              />
             </div>
             <div className="doctorInfo">
               <div className="doctorName">

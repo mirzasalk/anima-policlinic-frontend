@@ -6,6 +6,7 @@ import axios from "axios";
 import { hideLoading, showLoading } from "../../redux/alertsSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
+import { Image } from "cloudinary-react";
 
 const Terapije = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,12 @@ const Terapije = () => {
   });
   const [dropDownClick, setDropDownClick] = useState(false);
   const [terapije, setTerapije] = useState([]);
+  const [imageChangeCard, setImageChangeCard] = useState(false);
+  const [previewSorce, setPreviewSorce] = useState();
+  const [previewSorceForAdd, setPreviewSorceForAdd] = useState();
+  const [fileInputState, setFileInputState] = useState("");
+  const [therapyCloudUrl, setTherapyCloudUrl] = useState("");
+  const [therapyId, setTherapyId] = useState("");
 
   const handleFilterInput = (e) => {
     setFilterValues(e.target.value);
@@ -46,6 +53,7 @@ const Terapije = () => {
   };
 
   const AddNewTherapy = async () => {
+    setNewTherapyCardShow(false);
     try {
       if (
         newTherapyValues.ime !== "" &&
@@ -58,7 +66,7 @@ const Terapije = () => {
           {
             name: newTherapyValues.ime,
             about: newTherapyValues.opis,
-            img: newTherapyValues.slika,
+            img: previewSorceForAdd,
             doctors: newTherapyValues.doktori,
             category: newTherapyValues.kategorija,
           },
@@ -80,6 +88,7 @@ const Terapije = () => {
             doktori: [],
             kategorija: "",
           });
+
           getTherapys();
         } else {
           toast.error(response.data.massage);
@@ -202,7 +211,42 @@ const Terapije = () => {
       setDeleteTherapyValues(item);
     }
   };
-
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    previewFile(file);
+  };
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPreviewSorce(reader.result);
+    };
+  };
+  const handleSubmitFile = (e) => {
+    e.preventDefault();
+    setImageChangeCard(false);
+    if (!previewSorce) return;
+    uploadImg(previewSorce);
+  };
+  const uploadImg = async (img) => {
+    try {
+      console.log(previewSorce);
+      dispatch(showLoading);
+      const response = await axios.post(
+        "http://localhost:5000/api/admin/upload-therapy-img",
+        { imgUrl: img, therapyId: therapyId },
+        {
+          headers: {
+            authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      dispatch(hideLoading);
+      getTherapys();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div id="adminMain">
       {newTherapyCardShow ? (
@@ -327,6 +371,29 @@ const Terapije = () => {
                 onChange={handleNewTherapyValues}
               />
             </div>
+
+            {previewSorceForAdd ? (
+              <img
+                className="uploadedImg"
+                src={previewSorceForAdd}
+                width="200"
+                height="200"
+              />
+            ) : null}
+            <input
+              type="file"
+              name="image"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                  setPreviewSorceForAdd(reader.result);
+                };
+              }}
+              className="fileInput"
+              value={fileInputState}
+            />
             <button onClick={AddNewTherapy}>Add</button>
           </div>
         </div>
@@ -469,7 +536,43 @@ const Terapije = () => {
           </div>
         </div>
       ) : null}
+      {imageChangeCard ? (
+        <div className="changeImageDiv">
+          <div className="changeImageCard">
+            <div className="xIconDiv">
+              <img
+                className="ximg"
+                src="x.png"
+                onClick={() => {
+                  setImageChangeCard(false);
+                }}
+              />
+            </div>
 
+            <Image
+              className="drimg"
+              cloudName={"dlxwesw2p"}
+              publicId={therapyCloudUrl}
+            />
+            {previewSorce ? (
+              <img className="arrowDown" src="arrow-down.png"></img>
+            ) : null}
+            {previewSorce ? (
+              <img className="uploadedImg" src={previewSorce} />
+            ) : null}
+            <input
+              type="file"
+              name="image"
+              onChange={handleFileInputChange}
+              className="fileInput"
+              value={fileInputState}
+            />
+            {previewSorce ? (
+              <button onClick={handleSubmitFile}> Potvrdi </button>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
       <div className="WorkSpace">
         <AdminNav />
         <div className="ListeDiv">
@@ -500,7 +603,16 @@ const Terapije = () => {
                         : "therapyCardDisplayNone"
                     }
                   >
-                    <img src={item.img} />
+                    <Image
+                      className="drimg"
+                      cloudName={"dlxwesw2p"}
+                      publicId={item?.img}
+                      onClick={() => {
+                        setImageChangeCard(true);
+                        setTherapyId(item._id);
+                        setTherapyCloudUrl(item.img);
+                      }}
+                    />
 
                     <div className="rightFieldTherpyCard">
                       <h3>{item.name}</h3>

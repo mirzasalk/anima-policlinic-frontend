@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setUser } from "../../redux/userSlice";
 import { hideLoading, showLoading } from "../../redux/alertsSlice";
+import { Image } from "cloudinary-react";
 
 const AdminProfil = () => {
   const { user } = useSelector((state) => state.user);
@@ -21,7 +22,9 @@ const AdminProfil = () => {
     lastName: user?.lastName,
     email: user?.email,
   });
-
+  const [imageChangeCard, setImageChangeCard] = useState(false);
+  const [previewSorce, setPreviewSorce] = useState();
+  const [fileInputState, setFileInputState] = useState("");
   useEffect(() => {
     setAdminInfo(user);
   }, [user]);
@@ -89,6 +92,44 @@ const AdminProfil = () => {
       navigate("/prijava");
     }
   };
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+
+    previewFile(file);
+  };
+  const previewFile = (file) => {
+    console.log(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPreviewSorce(reader.result);
+    };
+  };
+  const handleSubmitFile = (e) => {
+    e.preventDefault();
+    setImageChangeCard(false);
+    if (!previewSorce) return;
+    uploadImg(previewSorce);
+  };
+  const uploadImg = async (img) => {
+    try {
+      console.log(previewSorce);
+      dispatch(showLoading);
+      const response = await axios.post(
+        "http://localhost:5000/api/admin/upload-admin-img",
+        { imgUrl: previewSorce },
+        {
+          headers: {
+            authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      dispatch(hideLoading);
+      getUser();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div id="adminMain">
@@ -143,7 +184,14 @@ const AdminProfil = () => {
             ) : null}
 
             <div className="adminImgDiv">
-              <img className="AdminProfilimg" src="Admin.png" />
+              <Image
+                className="AdminProfilimg"
+                cloudName={"dlxwesw2p"}
+                publicId={user?.img}
+                onClick={() => {
+                  setImageChangeCard(true);
+                }}
+              />
             </div>
             <div className="adminInfo">
               <div className="adminName">
@@ -172,6 +220,46 @@ const AdminProfil = () => {
           </div>
         </div>
       </div>
+      {imageChangeCard ? (
+        <div className="changeImageDiv">
+          <div className="changeImageCard">
+            <div className="xIconDiv">
+              <img
+                className="ximg"
+                src="x.png"
+                onClick={() => {
+                  setImageChangeCard(false);
+                }}
+              />
+            </div>
+            {console.log(user.img)}
+            <Image
+              className="drimg"
+              cloudName={"dlxwesw2p"}
+              publicId={user.img}
+              onClick={() => {
+                setImageChangeCard(true);
+              }}
+            />
+            {previewSorce ? (
+              <img className="arrowDown" src="arrow-down.png"></img>
+            ) : null}
+            {previewSorce ? (
+              <img className="uploadedImg" src={previewSorce} />
+            ) : null}
+            <input
+              type="file"
+              name="image"
+              onChange={handleFileInputChange}
+              className="fileInput"
+              value={fileInputState}
+            />
+            {previewSorce ? (
+              <button onClick={handleSubmitFile}> Potvrdi </button>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };

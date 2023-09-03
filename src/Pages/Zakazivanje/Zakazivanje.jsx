@@ -169,7 +169,7 @@ const Zakazivanje = () => {
       console.log(error);
     }
   };
-  console.log(userInfo);
+  console.log(user);
   const checkAvailability = async () => {
     try {
       dispatch(showLoading());

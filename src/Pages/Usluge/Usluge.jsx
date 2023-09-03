@@ -5,6 +5,7 @@ import Navbar from "../../Components/Navbar";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { Image } from "cloudinary-react";
 
 const Usluge = () => {
   const dispatch = useDispatch();
@@ -79,7 +80,8 @@ const Usluge = () => {
       if (
         filterSelec.length !== 0 &&
         item.firstName === filterSelec[0] &&
-        item.lastName === filterSelec[1]
+        item.lastName === filterSelec[1] &&
+        item.status === "approved"
       ) {
         setTherapiesOfSelectedDoctor(item.therapies);
       } else if (filterSelec.length === 0) {
@@ -193,19 +195,21 @@ const Usluge = () => {
             ) : null}
             {dropDownClick
               ? lekari.map((item, index) => {
-                  return (
-                    <div
-                      onClick={() => {
-                        setFilterSelec([item.firstName, item.lastName]);
-                        setDropDownClick(!dropDownClick);
-                      }}
-                      key={index}
-                    >
-                      <p>
-                        {item.firstName} {item.lastName}
-                      </p>
-                    </div>
-                  );
+                  if (item.status === "approved" && item.archived === "false") {
+                    return (
+                      <div
+                        onClick={() => {
+                          setFilterSelec([item.firstName, item.lastName]);
+                          setDropDownClick(!dropDownClick);
+                        }}
+                        key={index}
+                      >
+                        <p>
+                          {item.firstName} {item.lastName}
+                        </p>
+                      </div>
+                    );
+                  }
                 })
               : null}
           </div>
@@ -230,7 +234,11 @@ const Usluge = () => {
                       <strong>Lekari:</strong>
                     </h4>
                     {lekari.map((elem) => {
-                      if (elem.therapies.includes(item.name)) {
+                      if (
+                        elem.therapies.includes(item.name) &&
+                        elem.status === "approved" &&
+                        elem.archived === "false"
+                      ) {
                         return elem.firstName + " " + elem.lastName + ", ";
                       }
                     })}
@@ -238,7 +246,11 @@ const Usluge = () => {
                   </div>
                 </div>
                 <div className="TerapyCardImg">
-                  <img className="therapyImg" src={item.img} />
+                  <Image
+                    className="therapyImg"
+                    cloudName={"dlxwesw2p"}
+                    publicId={item.img}
+                  />
                   <div className="grayBackgroundDiv"></div>
                 </div>
               </div>
@@ -266,7 +278,11 @@ const Usluge = () => {
                         <strong>Lekari:</strong>
                       </h4>{" "}
                       {lekari.map((elem) => {
-                        if (elem.therapies.includes(item.name)) {
+                        if (
+                          elem.therapies.includes(item.name) &&
+                          elem.status === "approved" &&
+                          elem.archived === "false"
+                        ) {
                           return elem.firstName + " " + elem.lastName + ", ";
                         }
                       })}
@@ -274,7 +290,11 @@ const Usluge = () => {
                     </div>
                   </div>
                   <div className="TerapyCardImg">
-                    <img className="therapyImg" src={item.img} />
+                    <Image
+                      className="therapyImg"
+                      cloudName={"dlxwesw2p"}
+                      publicId={item.img}
+                    />
                     <div className="grayBackgroundDiv"></div>
                   </div>
                 </div>
@@ -302,7 +322,11 @@ const Usluge = () => {
                       <strong>Lekari:</strong>
                     </h4>{" "}
                     {lekari.map((elem) => {
-                      if (elem.therapies.includes(item.name)) {
+                      if (
+                        elem.therapies.includes(item.name) &&
+                        elem.status === "approved" &&
+                        elem.archived === "false"
+                      ) {
                         return elem.firstName + " " + elem.lastName + ", ";
                       }
                     })}
@@ -310,7 +334,11 @@ const Usluge = () => {
                   </div>
                 </div>
                 <div className="TerapyCardImg">
-                  <img className="therapyImg" src={item.img} />
+                  <Image
+                    className="therapyImg"
+                    cloudName={"dlxwesw2p"}
+                    publicId={item.img}
+                  />
                   <div className="grayBackgroundDiv"></div>
                 </div>
               </div>
@@ -338,7 +366,11 @@ const Usluge = () => {
                         <strong>Lekari:</strong>
                       </h4>{" "}
                       {lekari.map((elem) => {
-                        if (elem.therapies.includes(item.name)) {
+                        if (
+                          elem.therapies.includes(item.name) &&
+                          elem.status === "approved" &&
+                          elem.archived === "false"
+                        ) {
                           return elem.firstName + " " + elem.lastName + ", ";
                         }
                       })}
@@ -346,7 +378,11 @@ const Usluge = () => {
                     </div>
                   </div>
                   <div className="TerapyCardImg">
-                    <img className="therapyImg" src={item.img} />
+                    <Image
+                      className="therapyImg"
+                      cloudName={"dlxwesw2p"}
+                      publicId={item.img}
+                    />
                     <div className="grayBackgroundDiv"></div>
                   </div>
                 </div>
@@ -374,7 +410,11 @@ const Usluge = () => {
                       <strong>Lekari:</strong>
                     </h4>{" "}
                     {lekari.map((elem) => {
-                      if (elem.therapies.includes(item.name)) {
+                      if (
+                        elem.therapies.includes(item.name) &&
+                        elem.status === "approved" &&
+                        elem.archived === "false"
+                      ) {
                         return elem.firstName + " " + elem.lastName + ", ";
                       }
                     })}
@@ -382,7 +422,11 @@ const Usluge = () => {
                   </div>
                 </div>
                 <div className="TerapyCardImg">
-                  <img className="therapyImg" src={item.img} />
+                  <Image
+                    className="therapyImg"
+                    cloudName={"dlxwesw2p"}
+                    publicId={item.img}
+                  />
                   <div className="grayBackgroundDiv"></div>
                 </div>
               </div>
@@ -410,7 +454,11 @@ const Usluge = () => {
                         <strong>Lekari:</strong>{" "}
                       </h4>{" "}
                       {lekari.map((elem) => {
-                        if (elem.therapies.includes(item.name)) {
+                        if (
+                          elem.therapies.includes(item.name) &&
+                          elem.status === "approved" &&
+                          elem.archived === "false"
+                        ) {
                           return elem.firstName + " " + elem.lastName + ", ";
                         }
                       })}
@@ -418,7 +466,11 @@ const Usluge = () => {
                     </div>
                   </div>
                   <div className="TerapyCardImg">
-                    <img className="therapyImg" src={item.img} />
+                    <Image
+                      className="therapyImg"
+                      cloudName={"dlxwesw2p"}
+                      publicId={item.img}
+                    />
                     <div className="grayBackgroundDiv"></div>
                   </div>
                 </div>
@@ -446,7 +498,11 @@ const Usluge = () => {
                       <strong>Lekari:</strong>{" "}
                     </h4>{" "}
                     {lekari.map((elem) => {
-                      if (elem.therapies.includes(item.name)) {
+                      if (
+                        elem.therapies.includes(item.name) &&
+                        elem.status === "approved" &&
+                        elem.archived === "false"
+                      ) {
                         return elem.firstName + " " + elem.lastName + ", ";
                       }
                     })}
@@ -454,7 +510,11 @@ const Usluge = () => {
                   </div>
                 </div>
                 <div className="TerapyCardImg">
-                  <img className="therapyImg" src={item.img} />
+                  <Image
+                    className="therapyImg"
+                    cloudName={"dlxwesw2p"}
+                    publicId={item.img}
+                  />
                   <div className="grayBackgroundDiv"></div>
                 </div>
               </div>
@@ -482,7 +542,11 @@ const Usluge = () => {
                         <strong>Lekari:</strong>
                       </h4>{" "}
                       {lekari.map((elem) => {
-                        if (elem.therapies.includes(item.name)) {
+                        if (
+                          elem.therapies.includes(item.name) &&
+                          elem.status === "approved" &&
+                          elem.archived === "false"
+                        ) {
                           return elem.firstName + " " + elem.lastName + ", ";
                         }
                       })}
@@ -490,7 +554,11 @@ const Usluge = () => {
                     </div>
                   </div>
                   <div className="TerapyCardImg">
-                    <img className="therapyImg" src={item.img} />
+                    <Image
+                      className="therapyImg"
+                      cloudName={"dlxwesw2p"}
+                      publicId={item.img}
+                    />
                     <div className="grayBackgroundDiv"></div>
                   </div>
                 </div>

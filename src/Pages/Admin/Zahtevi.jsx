@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../../redux/alertsSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Image } from "cloudinary-react";
 
 const Zahtevi = () => {
   const navigate = useNavigate();
@@ -109,7 +110,14 @@ const Zahtevi = () => {
       {cardShow ? (
         <div className="doctorRequesCardMain">
           <div className="doctorRequesCard">
-            <img src="Admin.png" />
+            <Image
+              className="drimg"
+              cloudName={"dlxwesw2p"}
+              publicId={doctor.img}
+              onClick={() => {
+                setImageChangeCard(true);
+              }}
+            />
             <div className="rightFieldDoctorCard">
               <h3>{`${doctor.firstName} ${doctor.lastName}`}</h3>
               <p>Adresa:{doctor.address}</p>

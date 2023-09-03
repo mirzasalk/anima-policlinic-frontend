@@ -20,6 +20,7 @@ import DoctorProfil from "./Pages/Doctor/DoctorProfil/DoctorProfil";
 import ZahteviZaTermin from "./Pages/Doctor/Zahtevi/ZahteviZaTermin";
 import ZakazaniTermini from "./Pages/Doctor/ZakazaniTermini/ZakazaniTermini";
 import OurTeam from "./Pages/OurTeam/OurTeam";
+import Kontakt from "./Pages/Kontakt/Kontakt";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -75,6 +76,14 @@ function App() {
             }
           />
           <Route
+            path="kontakt"
+            element={
+              <PublicRoute>
+                <Kontakt />
+              </PublicRoute>
+            }
+          />
+          <Route
             path="zahtevi"
             element={
               <ProtectedRoute>
@@ -98,6 +107,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="korisnici"
             element={

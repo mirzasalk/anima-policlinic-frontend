@@ -93,6 +93,7 @@
         justify-content: center;
         align-items: start;
         color: #ffffff;
+        margin-bottom: 0.1em;
         .categoryOfTherapySelector {
           color: black;
           width: 100%;
@@ -314,7 +315,9 @@
           border-bottom: 1px solid gray;
           margin: 1em;
         }
-        .DivForDoktorCards {
+        .DivForApprovedDoktorCards,
+        .DivForRejectedDoktorCards,
+        .DivForArchivedDoktorCards {
           display: flex;
           justify-content: start;
           align-items: center;
@@ -346,6 +349,9 @@
             }
             img {
               width: 15em;
+            }
+            img:hover {
+              cursor: pointer;
             }
             .DoctorCardTherapy {
               margin-top: 1em;
@@ -772,10 +778,23 @@
 }
 .AddNewDoctorDiv {
   display: flex;
-  justify-content: end;
-  padding: 0 0 1em 0;
+  justify-content: space-between;
+  padding: 0 0 1em 3em;
   width: 90%;
   margin-top: -1em;
+  .changePageStatusDiv {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+    p {
+      text-decoration: underline;
+      color: #2d6d98;
+    }
+    p:hover {
+      cursor: pointer;
+      color: rgba(227, 146, 24, 0.836);
+    }
+  }
 }
 #apliciranjeMain {
   display: flex;
@@ -928,18 +947,18 @@
   backdrop-filter: blur(3px);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
 
   h1 {
     margin: 0em 0.5em 0.5em 0.5em;
   }
   .formDiv {
     width: 90%;
-    margin-top: 100px;
+    margin-top: 50px;
     padding: 1em;
     display: flex;
     flex-direction: column;
-    height: 70vh;
+    height: fit-content;
     border: 1px solid gray;
     border-radius: 1em;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -997,6 +1016,20 @@
     }
     input {
       width: 98%;
+      height: 3em;
+      padding: 0 1em;
+    }
+  }
+  .inputPassDiv {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    margin: 1em;
+    width: 25%;
+    padding: auto;
+    input {
+      width: 60%;
       height: 3em;
       padding: 0 1em;
     }
@@ -1064,4 +1097,62 @@
       background-color: #eee;
     }
   }
+}
+.iconDivNewDoctor {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding-right: 1em;
+  img:hover {
+    cursor: pointer;
+  }
+}
+.changeImageDiv {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.546);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .changeImageCard {
+    width: 35%;
+    height: fit-content;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 1em 1em 2em 1em;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    .xIconDiv {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
+    .xIconDiv:hover {
+      cursor: pointer;
+    }
+    .drimg {
+      width: 15em;
+    }
+    input {
+      margin-top: 1em;
+    }
+    .uploadedImg {
+      width: 15em;
+      height: 15em;
+    }
+    .arrowDown {
+      height: 2em;
+      margin: 0.5em 0 0.5em 0;
+    }
+  }
+}
+.fileInput {
+  width: 15em;
 }
