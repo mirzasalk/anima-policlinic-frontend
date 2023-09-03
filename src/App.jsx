@@ -21,6 +21,7 @@ import ZahteviZaTermin from "./Pages/Doctor/Zahtevi/ZahteviZaTermin";
 import ZakazaniTermini from "./Pages/Doctor/ZakazaniTermini/ZakazaniTermini";
 import OurTeam from "./Pages/OurTeam/OurTeam";
 import Kontakt from "./Pages/Kontakt/Kontakt";
+import EmailVerify from "./Components/EmailVerify";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -39,6 +40,14 @@ function App() {
             element={
               <PublicRoute>
                 <Home />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/user/:id/verify/:token"
+            element={
+              <PublicRoute>
+                <EmailVerify />
               </PublicRoute>
             }
           />
