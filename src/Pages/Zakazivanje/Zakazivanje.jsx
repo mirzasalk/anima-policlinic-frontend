@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { TimePicker, Space, DatePicker } from "antd";
+import { Image } from "cloudinary-react";
 
 const Zakazivanje = () => {
   const navigate = useNavigate();
@@ -169,7 +170,7 @@ const Zakazivanje = () => {
       console.log(error);
     }
   };
-  console.log(user);
+
   const checkAvailability = async () => {
     try {
       dispatch(showLoading());
@@ -195,6 +196,7 @@ const Zakazivanje = () => {
       toast.error("greska");
     }
   };
+
   const getApointments = async () => {
     try {
       dispatch(showLoading);
@@ -218,6 +220,7 @@ const Zakazivanje = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     user ? getApointments() : null;
   }, [user]);
@@ -284,7 +287,11 @@ const Zakazivanje = () => {
                 ? doctor.map((item, index) => {
                     return (
                       <div key={index} className="doctorCard">
-                        <img src="dr1.png" />
+                        <Image
+                          className="drimg"
+                          cloudName={"dlxwesw2p"}
+                          publicId={item?.img}
+                        />
                         <div className="rightFieldDoctorCard">
                           <h3>
                             {item.firstName} {item.lastName}

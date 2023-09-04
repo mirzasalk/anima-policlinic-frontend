@@ -10,6 +10,7 @@ import { Image } from "cloudinary-react";
 
 const Terapije = () => {
   const dispatch = useDispatch();
+  const [lekari, setLekari] = useState([]);
   const [filterValues, setFilterValues] = useState("");
   const [newTherapyCardShow, setNewTherapyCardShow] = useState(false);
   const [changeTherapyCardShow, setChangeTherapyCardShow] = useState(false);
@@ -118,8 +119,22 @@ const Terapije = () => {
       console.log(error);
     }
   };
+  const getDoctors = async () => {
+    try {
+      dispatch(showLoading);
+      const response = await axios.get(
+        "http://localhost:5000/api/user/get-doctors-for-unsigned-user"
+      );
+      dispatch(hideLoading);
+      console.log(response);
+      setLekari([...response.data.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     getTherapys();
+    getDoctors();
   }, []);
 
   const handleShowingValues = () => {
@@ -620,8 +635,16 @@ const Terapije = () => {
                       <div className="therapyCardDoctors">
                         <strong>Doktori:</strong>
                         <div>
-                          {item.doctors?.map((i, index) => {
-                            return <p key={index}>{i}</p>;
+                          {lekari.map((elem) => {
+                            if (
+                              elem.therapies.includes(item.name) &&
+                              elem.status === "approved" &&
+                              elem.archived === "false"
+                            ) {
+                              return (
+                                elem.firstName + " " + elem.lastName + ", "
+                              );
+                            }
                           })}
                         </div>
                       </div>
