@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./style.scss";
 import axios from "axios";
+import api from "../../api";
 
 const EmailVerify = () => {
   const [validUrl, setValidUrl] = useState(false);
