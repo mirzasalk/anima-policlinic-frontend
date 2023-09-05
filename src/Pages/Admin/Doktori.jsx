@@ -13,6 +13,7 @@ import { Image } from "cloudinary-react";
 
 // require("dotenv").config();
 const Doktori = () => {
+  const [filterValues, setFilterValues] = useState("");
   const [previewSorce, setPreviewSorce] = useState();
   const [doctor, setDoctor] = useState([]);
   const [deleteDoctorDivShowing, setDeleteDoctorDivShowing] = useState(false);
@@ -138,6 +139,10 @@ const Doktori = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const handleFilterInput = (e) => {
+    setFilterValues(e.target.value);
+  };
+  console.log(filterValues);
 
   const changeDoctorInfo = async () => {
     try {
@@ -363,14 +368,12 @@ const Doktori = () => {
                 >
                   Odbijeni
                 </p>
-                <p
-                  onClick={() => {
-                    setDoktorsStatus("archived");
-                  }}
-                >
-                  Arhivirani
-                </p>
               </div>
+              <input
+                placeholder="pretrazi po nazivu"
+                type="text"
+                onChange={handleFilterInput}
+              />
               <button
                 className="AddNewDoctorBtn"
                 onClick={() => {
@@ -383,9 +386,20 @@ const Doktori = () => {
             {doktorsStatus === "approved" ? (
               <div className="DivForApprovedDoktorCards">
                 {doctor.map((item, index) => {
+                  let nametemp = item.firstName + " " + item.lastName;
                   if (item.status === "approved" && item.archived === "false") {
                     return (
-                      <div key={index} className="doctorCard">
+                      <div
+                        key={index}
+                        className={
+                          filterValues === "" ||
+                          nametemp
+                            .toLowerCase()
+                            .includes(filterValues.toLowerCase())
+                            ? "doctorCard"
+                            : "doctorCardDisplayNone"
+                        }
+                      >
                         <Image
                           className="doctorCardImg"
                           cloudName={"dlxwesw2p"}
@@ -467,92 +481,20 @@ const Doktori = () => {
             {doktorsStatus === "rejected" ? (
               <div className="DivForRejectedDoktorCards">
                 {doctor.map((item, index) => {
+                  let nametemp = item.firstName + " " + item.lastName;
                   if (item.status === "rejected" && item.archived === "false") {
                     return (
-                      <div key={index} className="doctorCard">
-                        <Image
-                          className="doctorCardImg"
-                          cloudName={"dlxwesw2p"}
-                          publicId={item.img}
-                          onClick={() => {
-                            setImageChangeCard(true);
-                            setDoctorID(item._id);
-                            setDoctorImgCloudUrl(item.img);
-                          }}
-                        />
-                        <div className="rightFieldDoctorCard">
-                          <h3>
-                            {item.firstName} {item.lastName}
-                          </h3>
-                          <p>Email: {item.email}</p>
-                          <p>Broj telefona: {item.phoneNumber}</p>
-                          <p>Specijalizacija: {item.specialization}</p>
-                          <p>Status: {item.status}</p>
-                          <div className="TerapijeZahteva">
-                            Terapije:
-                            {item.therapies.map((elem, index) => {
-                              return item.therapies.length - 1 === index ? (
-                                <div key={index}>{elem}</div>
-                              ) : (
-                                <div key={index}>{elem},</div>
-                              );
-                            })}{" "}
-                          </div>
-                          <p>
-                            Radno vreme:{" "}
-                            {item.timings && item.timings[0][0] <= 9
-                              ? "0"
-                              : null}
-                            {item.timings ? item.timings[0][0] : null}:
-                            {item.timings && item.timings[0][1] <= 9
-                              ? "0"
-                              : null}
-                            {item.timings ? item?.timings[0][1] : null}-
-                            {item.timings && item.timings[1][0] <= 9
-                              ? "0"
-                              : null}
-                            {item.timings ? item.timings[1][0] : null}:
-                            {item.timings && item.timings[1][1] <= 9
-                              ? "0"
-                              : null}
-                            {item.timings ? item?.timings[1][1] : null}
-                          </p>
-
-                          <div className="DoctorCardTherapy"></div>
-                          <div className="doctorBtnsDiv">
-                            <button
-                              onClick={() => {
-                                setChangeDoctorDivShowing(true);
-                                setChangedDoctorValues((prevState) => ({
-                                  ...prevState,
-                                  ...item,
-                                }));
-                              }}
-                            >
-                              Izmeni
-                            </button>
-                            <button
-                              className="deleteBtn"
-                              onClick={() => {
-                                showingDeleteDiv(item._id, item.userId);
-                              }}
-                            >
-                              Izbrisi
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  }
-                })}
-              </div>
-            ) : null}
-            {doktorsStatus === "archived" ? (
-              <div className="DivForArchivedDoktorCards">
-                {doctor.map((item, index) => {
-                  if (item.archived === "true") {
-                    return (
-                      <div key={index} className="doctorCard">
+                      <div
+                        key={index}
+                        className={
+                          filterValues === "" ||
+                          nametemp
+                            .toLowerCase()
+                            .includes(filterValues.toLowerCase())
+                            ? "doctorCard"
+                            : "doctorCardDisplayNone"
+                        }
+                      >
                         <Image
                           className="doctorCardImg"
                           cloudName={"dlxwesw2p"}

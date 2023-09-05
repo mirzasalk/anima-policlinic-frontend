@@ -596,7 +596,7 @@ const Terapije = () => {
             <div className="DivForTherapyCards">
               <div className="filterAndAddDiv">
                 <input
-                  placeholder="filtriraj po nazivu"
+                  placeholder="pretrazi po nazivu"
                   type="text"
                   onChange={handleFilterInput}
                 />

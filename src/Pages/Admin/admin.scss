@@ -326,7 +326,9 @@
           height: 75vh;
           overflow-y: scroll;
           overflow-x: hidden;
-
+          .doctorCardDisplayNone {
+            display: none;
+          }
           .doctorCard {
             display: flex;
             justify-content: center;

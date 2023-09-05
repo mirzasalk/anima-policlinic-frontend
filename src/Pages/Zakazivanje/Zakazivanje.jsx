@@ -36,6 +36,7 @@ const Zakazivanje = () => {
   const [availability, setAvailability] = useState(false);
   const [showCancelDiv, setShowCancelDiv] = useState(false);
   const [apointmentId, setApointmentId] = useState();
+  const [doctorApointmentId, setDoctorApointmentId] = useState();
 
   const getDoctors = async () => {
     try {
@@ -197,6 +198,29 @@ const Zakazivanje = () => {
     }
   };
 
+  const getDoctorApointments = async () => {
+    try {
+      dispatch(showLoading);
+      const response = await axios.post(
+        "http://localhost:5000/api/user/get-doctor-apointments",
+        {
+          id: doctorInfo._id,
+        },
+        {
+          headers: {
+            authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      dispatch(hideLoading);
+      if (response.data.success) {
+        setDoctorApointmentId(response.data.data);
+      } else {
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const getApointments = async () => {
     try {
       dispatch(showLoading);
@@ -224,6 +248,9 @@ const Zakazivanje = () => {
   useEffect(() => {
     user ? getApointments() : null;
   }, [user]);
+  useEffect(() => {
+    getDoctorApointments();
+  }, [doctorInfo]);
 
   const cancelApointment = async () => {
     try {
@@ -252,6 +279,7 @@ const Zakazivanje = () => {
       console.log(error);
     }
   };
+
   return (
     <div id="zakazivanjeMain">
       <div className="WorkSpace">
@@ -564,7 +592,29 @@ const Zakazivanje = () => {
                   ? "0"
                   : null}
                 {doctorInfo.timings ? doctorInfo?.timings[1][1] : null}
+                <div className="slobodniTermini">
+                  <p>Zauzeti termini</p>
+                  {doctorApointmentId.map((item) => {
+                    if (userInfo.date) {
+                      if (
+                        item.date[0] === userInfo?.date[0] &&
+                        item.date[1] === userInfo?.date[1] &&
+                        item.date[2] === userInfo?.date[2]
+                      ) {
+                        return (
+                          <div className="zauzetTerminDiv">
+                            {item.timings && item.timings[0] <= 9 ? "0" : null}
+                            {item.timings && item.timings[0]}:{" "}
+                            {item.timings && item.timings[1] <= 9 ? "0" : null}
+                            {item.timings && item.timings[1]}
+                          </div>
+                        );
+                      }
+                    }
+                  })}
+                </div>
               </div>
+
               <div className="buttonDiv">
                 {availability ? (
                   <button onClick={booking}>Zakaži</button>
