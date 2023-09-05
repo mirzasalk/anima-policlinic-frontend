@@ -6,6 +6,7 @@ import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Image } from "cloudinary-react";
+import api from "../../api";
 
 const Usluge = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ const Usluge = () => {
   const getDoctors = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-doctors-for-unsigned-user"
+      const response = await api.get(
+        "/api/user/get-doctors-for-unsigned-user"
       );
       dispatch(hideLoading);
       console.log(response);
@@ -37,8 +38,8 @@ const Usluge = () => {
   const getTherapies = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-therapies-gor-unsigned-user"
+      const response = await api.get(
+        "/api/user/get-therapies-gor-unsigned-user"
       );
       dispatch(hideLoading);
       console.log(response);

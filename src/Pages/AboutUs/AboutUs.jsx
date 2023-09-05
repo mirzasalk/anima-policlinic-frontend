@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Image } from "cloudinary-react";
 import { useState } from "react";
+import api from "../../api";
 
 const AboutUs = () => {
   const dispatch = useDispatch();
@@ -48,9 +49,7 @@ const AboutUs = () => {
   const getDoctors = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-doctors-for-unsigned-user"
-      );
+      const response = await api.get("/api/user/get-doctors-for-unsigned-user");
       dispatch(hideLoading);
       console.log(response);
       setLekari([...response.data.data]);

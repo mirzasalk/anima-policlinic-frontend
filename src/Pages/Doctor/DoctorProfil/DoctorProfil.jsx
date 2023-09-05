@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { Image } from "cloudinary-react";
 import { hideLoading, showLoading } from "../../../redux/alertsSlice";
 import { TimePicker } from "antd";
+import api from "../../../api";
 
 const DoctorProfil = () => {
   const { user } = useSelector((state) => state.user);
@@ -35,8 +36,8 @@ const DoctorProfil = () => {
   const changeDoctorInfo = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/doctor/change-presonaldoctor-info",
+      const response = await api.post(
+        "/api/doctor/change-presonaldoctor-info",
         {
           userId: doctorInfo?.userId,
           _id: doctorInfo?._id,
@@ -72,8 +73,8 @@ const DoctorProfil = () => {
   const getDoctor = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/get-doctor-info-by-user-id",
+      const response = await api.post(
+        "/api/admin/get-doctor-info-by-user-id",
         { userId: user.id },
         {
           headers: {
@@ -115,8 +116,8 @@ const DoctorProfil = () => {
   const getTherapys = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-therapys",
+      const response = await api.get(
+        "/api/user/get-therapys",
         {
           headers: {
             authorization: "Bearer " + localStorage.getItem("token"),
@@ -153,8 +154,8 @@ const DoctorProfil = () => {
     try {
       console.log(previewSorce);
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/doctor/upload-doctor-img",
+      const response = await api.post(
+        "/api/doctor/upload-doctor-img",
         { imgUrl: previewSorce, _id: doctorInfo._id },
         {
           headers: {

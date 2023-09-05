@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { useNavigate } from "react-router-dom";
+import api from "../../api";
 const Register = () => {
   const [userData, setUserData] = useState({});
   const [firstNameError, setFirstNameError] = useState("");
@@ -20,8 +21,8 @@ const Register = () => {
   const getUser = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/user/get-user-info-by-id",
+      const response = await api.post(
+        "/api/user/get-user-info-by-id",
         { token: localStorage.getItem("token") }, //ovo ubrzava obradu??
         {
           headers: {
@@ -51,8 +52,8 @@ const Register = () => {
         dispatch(showLoading());
 
         console.log(userData);
-        const response = await axios.post(
-          "http://localhost:5000/api/user/register",
+        const response = await api.post(
+          "/api/user/register",
           userData
         );
 

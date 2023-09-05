@@ -10,6 +10,7 @@ import "./admin.scss";
 import { toast } from "react-hot-toast";
 import { TimePicker, Space } from "antd";
 import { Image } from "cloudinary-react";
+import api from "../../api";
 
 // require("dotenv").config();
 const Doktori = () => {
@@ -61,14 +62,11 @@ const Doktori = () => {
   const getDoctors = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-doctors",
-        {
-          headers: {
-            authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await api.get("/api/user/get-doctors", {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       dispatch(hideLoading);
       console.log(response);
       setDoctor([...response.data.data]);
@@ -80,14 +78,11 @@ const Doktori = () => {
   const getTherapys = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-therapys",
-        {
-          headers: {
-            authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await api.get("/api/user/get-therapys", {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       dispatch(hideLoading);
 
       setTherapies([...response.data.data]);
@@ -99,8 +94,8 @@ const Doktori = () => {
   const deleteDoctor = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/delete-doctor",
+      const response = await api.post(
+        "/api/admin/delete-doctor",
         {
           uId: userID,
           _id: doctorID,
@@ -147,8 +142,8 @@ const Doktori = () => {
   const changeDoctorInfo = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/change-doctor-info",
+      const response = await api.post(
+        "/api/admin/change-doctor-info",
         {
           ...changedDoctorValues,
         },
@@ -197,8 +192,8 @@ const Doktori = () => {
       if (validSubmit) {
         dispatch(showLoading());
 
-        const response = await axios.post(
-          "http://localhost:5000/api/admin//create-new-doctor",
+        const response = await api.post(
+          "/api/admin//create-new-doctor",
           { ...newDoctorInfo, img: previewSorce },
           {
             headers: {
@@ -287,8 +282,8 @@ const Doktori = () => {
     try {
       console.log(previewSorce);
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/upload-doctor-img",
+      const response = await api.post(
+        "/api/admin/upload-doctor-img",
         { imgUrl: previewSorce, doctorId: doctorID },
         {
           headers: {

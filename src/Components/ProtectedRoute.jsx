@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../redux/userSlice";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
+import api from "../api";
 
 function ProtectedRoute(props) {
   const navigate = useNavigate();
@@ -14,8 +15,8 @@ function ProtectedRoute(props) {
   const getUser = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/user/get-user-info-by-id",
+      const response = await api.post(
+        "/api/user/get-user-info-by-id",
         { token: localStorage.getItem("token") }, //ovo ubrzava obradu??
         {
           headers: {

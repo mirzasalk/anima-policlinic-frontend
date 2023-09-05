@@ -6,6 +6,7 @@ import DoctorNav from "../DoctorNav/DoctorNav";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { hideLoading, showLoading } from "../../../redux/alertsSlice";
+import api from "../../../api";
 const ZakazaniTermini = () => {
   const { user } = useSelector((state) => state.user);
   const [showDeleteDiv, setShowDeleteDiv] = useState(false);
@@ -18,8 +19,8 @@ const ZakazaniTermini = () => {
   const getApointments = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/doctor/get-all-apointments",
+      const response = await api.post(
+        "/api/doctor/get-all-apointments",
         {
           doctorId: doctorInfo?._id,
         },
@@ -43,8 +44,8 @@ const ZakazaniTermini = () => {
   const getDoctor = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/get-doctor-info-by-user-id",
+      const response = await api.post(
+        "/api/admin/get-doctor-info-by-user-id",
         { userId: user.id },
         {
           headers: {
@@ -77,8 +78,8 @@ const ZakazaniTermini = () => {
   const deleteApointment = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/doctor/delete-apointment",
+      const response = await api.post(
+        "/api/doctor/delete-apointment",
         {
           _id: apointmentId,
         },
@@ -104,8 +105,8 @@ const ZakazaniTermini = () => {
   const cancelApointment = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/doctor/reject-apointments",
+      const response = await api.post(
+        "/api/doctor/reject-apointments",
         {
           _id: apointmentId,
         },

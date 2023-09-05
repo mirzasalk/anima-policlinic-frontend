@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../../api";
 
 const ApliciranjeZaPosao = () => {
   const dispatch = useDispatch();
@@ -80,8 +81,8 @@ const ApliciranjeZaPosao = () => {
       if (validSubmit) {
         dispatch(showLoading());
 
-        const response = await axios.post(
-          "http://localhost:5000/api/user/doctor-apply",
+        const response = await api.post(
+          "/api/user/doctor-apply",
           { ...doctorData, userId: user.id, img: previewSorce },
           {
             headers: {
@@ -144,8 +145,8 @@ const ApliciranjeZaPosao = () => {
   const getTherapys = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-therapys",
+      const response = await api.get(
+        "/api/user/get-therapys",
         {
           headers: {
             authorization: "Bearer " + localStorage.getItem("token"),

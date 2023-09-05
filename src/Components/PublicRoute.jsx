@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 import { setUser } from "../redux/userSlice";
+import api from "../api";
 
 function PublicRoute(props) {
   const dispatch = useDispatch();
@@ -11,8 +12,8 @@ function PublicRoute(props) {
   const getUser = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/user/get-user-info-by-id",
+      const response = await api.post(
+        "/api/user/get-user-info-by-id",
         { token: localStorage.getItem("token") }, //ovo ubrzava obradu??
         {
           headers: {

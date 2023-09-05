@@ -7,6 +7,7 @@ import { hideLoading, showLoading } from "../../redux/alertsSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
 import { Image } from "cloudinary-react";
+import api from "../../api";
 
 const Terapije = () => {
   const dispatch = useDispatch();
@@ -62,8 +63,8 @@ const Terapije = () => {
         newTherapyValues.kategorija !== ""
       ) {
         dispatch(showLoading());
-        const response = await axios.post(
-          "http://localhost:5000/api/admin/add-new-therapy",
+        const response = await api.post(
+          "/api/admin/add-new-therapy",
           {
             name: newTherapyValues.ime,
             about: newTherapyValues.opis,
@@ -104,14 +105,11 @@ const Terapije = () => {
   const getTherapys = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-therapys",
-        {
-          headers: {
-            authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await api.get("/api/user/get-therapys", {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       dispatch(hideLoading);
 
       setTerapije([...response.data.data]);
@@ -122,9 +120,7 @@ const Terapije = () => {
   const getDoctors = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-doctors-for-unsigned-user"
-      );
+      const response = await api.get("/api/user/get-doctors-for-unsigned-user");
       dispatch(hideLoading);
       console.log(response);
       setLekari([...response.data.data]);
@@ -157,8 +153,8 @@ const Terapije = () => {
   const changeTherapyInfo = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/change-therapy-info",
+      const response = await api.post(
+        "/api/admin/change-therapy-info",
         {
           _id: changeTherapyValues._id,
           name: changeTherapyValues.name,
@@ -190,8 +186,8 @@ const Terapije = () => {
   const deleteTherapy = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/delete-therapy",
+      const response = await api.post(
+        "/api/admin/delete-therapy",
         {
           _id: deleteTherapyValues,
         },
@@ -247,8 +243,8 @@ const Terapije = () => {
     try {
       console.log(previewSorce);
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/upload-therapy-img",
+      const response = await api.post(
+        "/api/admin/upload-therapy-img",
         { imgUrl: img, therapyId: therapyId },
         {
           headers: {

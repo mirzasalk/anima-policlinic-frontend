@@ -6,6 +6,7 @@ import DoctorNav from "../DoctorNav/DoctorNav";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { hideLoading, showLoading } from "../../../redux/alertsSlice";
+import api from "../../../api";
 const ZahteviZaTermin = () => {
   const { user } = useSelector((state) => state.user);
   const [cardShow, setCardShow] = useState(false);
@@ -16,8 +17,8 @@ const ZahteviZaTermin = () => {
   const getDoctor = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/get-doctor-info-by-user-id",
+      const response = await api.post(
+        "/api/admin/get-doctor-info-by-user-id",
         { userId: user.id },
         {
           headers: {
@@ -39,8 +40,8 @@ const ZahteviZaTermin = () => {
   const getApointments = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/doctor/get-apointments",
+      const response = await api.post(
+        "/api/doctor/get-apointments",
         {
           doctorId: doctorInfo?._id,
         },
@@ -74,8 +75,8 @@ const ZahteviZaTermin = () => {
   const aproveApointments = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/doctor/approve-apointments",
+      const response = await api.post(
+        "/api/doctor/approve-apointments",
         {
           _id: userInfo._id,
         },
@@ -98,8 +99,8 @@ const ZahteviZaTermin = () => {
   const rejectApointments = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/doctor/reject-apointments",
+      const response = await api.post(
+        "/api/doctor/reject-apointments",
         { _id: userInfo._id },
         {
           headers: {

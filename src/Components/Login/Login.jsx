@@ -10,6 +10,7 @@ import Navbar from "../Navbar";
 
 import "./login.scss";
 import { setUser } from "../../redux/userSlice";
+import api from "../../api";
 
 const Login = () => {
   const user = useSelector((state) => state.user);
@@ -24,8 +25,8 @@ const Login = () => {
   const getUser = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/user/get-user-info-by-id",
+      const response = await api.post(
+        "/api/user/get-user-info-by-id",
         { token: localStorage.getItem("token") }, //ovo ubrzava obradu??
         {
           headers: {
@@ -55,10 +56,7 @@ const Login = () => {
       if (validSubmit) {
         dispatch(showLoading());
 
-        const response = await axios.post(
-          "http://localhost:5000/api/user/login",
-          userData
-        );
+        const response = await api.post("/api/user/login", userData);
         dispatch(hideLoading());
         if (response.data.success) {
           console.log(response.data);

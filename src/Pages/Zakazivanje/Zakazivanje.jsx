@@ -10,6 +10,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { TimePicker, Space, DatePicker } from "antd";
 import { Image } from "cloudinary-react";
+import api from "../../api";
 
 const Zakazivanje = () => {
   const navigate = useNavigate();
@@ -41,14 +42,11 @@ const Zakazivanje = () => {
   const getDoctors = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-doctors",
-        {
-          headers: {
-            authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await api.get("/api/user/get-doctors", {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       dispatch(hideLoading);
       console.log(response);
       setDoctor([...response.data.data]);
@@ -147,8 +145,8 @@ const Zakazivanje = () => {
       e.preventDefault();
       if (validSubmit) {
         dispatch(showLoading());
-        const response = await axios.post(
-          "http://localhost:5000/api/user/apointment-apply",
+        const response = await api.post(
+          "/api/user/apointment-apply",
           { ...userInfo },
           {
             headers: {
@@ -175,8 +173,8 @@ const Zakazivanje = () => {
   const checkAvailability = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/user/check-availability",
+      const response = await api.post(
+        "/api/user/check-availability",
         { ...userInfo },
         {
           headers: {
@@ -201,8 +199,8 @@ const Zakazivanje = () => {
   const getDoctorApointments = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/user/get-doctor-apointments",
+      const response = await api.post(
+        "/api/user/get-doctor-apointments",
         {
           id: doctorInfo._id,
         },
@@ -224,8 +222,8 @@ const Zakazivanje = () => {
   const getApointments = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/user/get-apointments",
+      const response = await api.post(
+        "/api/user/get-apointments",
         {
           userId: user.id,
         },
@@ -255,8 +253,8 @@ const Zakazivanje = () => {
   const cancelApointment = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/doctor/reject-apointments",
+      const response = await api.post(
+        "/api/doctor/reject-apointments",
         {
           _id: apointmentId,
         },

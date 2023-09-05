@@ -4,14 +4,15 @@ import { Link } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import api from "../../api";
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
 
   const getData = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/user/get-user-info-by-id",
+      const response = await api.post(
+        "/api/user/get-user-info-by-id",
         {}, //??
 
         {

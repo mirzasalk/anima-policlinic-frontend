@@ -8,6 +8,7 @@ import axios from "axios";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
+import api from "../../api";
 
 const Korisnici = () => {
   const dispatch = useDispatch();
@@ -20,14 +21,11 @@ const Korisnici = () => {
   const getUsers = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-users",
-        {
-          headers: {
-            authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await api.get("/api/user/get-users", {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       dispatch(hideLoading);
 
       setKorisnici([...response.data.data]);
@@ -37,8 +35,8 @@ const Korisnici = () => {
   const deleteUser = async () => {
     try {
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/delete-user",
+      const response = await api.post(
+        "/api/admin/delete-user",
         {
           _id: UserID,
         },
@@ -71,8 +69,8 @@ const Korisnici = () => {
     try {
       console.log(userInfo);
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/change-user-info",
+      const response = await api.post(
+        "/api/admin/change-user-info",
         {
           _id: userInfo._id,
           firstName: userInfo.firstName,

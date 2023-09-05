@@ -7,6 +7,7 @@ import { hideLoading, showLoading } from "../../redux/alertsSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Image } from "cloudinary-react";
+import api from "../../api";
 
 const Zahtevi = () => {
   const navigate = useNavigate();
@@ -18,10 +19,9 @@ const Zahtevi = () => {
   const showCard = async (id) => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/user/get-doctor-info-by-id",
-        { userId: id }
-      );
+      const response = await api.post("/api/user/get-doctor-info-by-id", {
+        userId: id,
+      });
       dispatch(hideLoading());
       if (response.data.success) {
         setDoctor(response.data.data);
@@ -38,8 +38,8 @@ const Zahtevi = () => {
   const approveDoctorAplication = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/approve-doctor-status",
+      const response = await api.post(
+        "/api/admin/approve-doctor-status",
         { doctorId: doctor._id, status: doctor.status },
         {
           headers: {
@@ -61,8 +61,8 @@ const Zahtevi = () => {
   const rejectDoctorAplication = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/reject-doctor-status",
+      const response = await api.post(
+        "/api/admin/reject-doctor-status",
         { doctorId: doctor._id, status: doctor.status },
         {
           headers: {

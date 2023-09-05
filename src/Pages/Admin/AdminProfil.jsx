@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { setUser } from "../../redux/userSlice";
 import { hideLoading, showLoading } from "../../redux/alertsSlice";
 import { Image } from "cloudinary-react";
+import api from "../../api";
 
 const AdminProfil = () => {
   const { user } = useSelector((state) => state.user);
@@ -40,8 +41,8 @@ const AdminProfil = () => {
     try {
       console.log(adminInfo);
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/change-admin-info",
+      const response = await api.post(
+        "/api/admin/change-admin-info",
         {
           _id: adminInfo.id,
           firstName: adminInfo.firstName,
@@ -69,8 +70,8 @@ const AdminProfil = () => {
   const getUser = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "http://localhost:5000/api/user/get-user-info-by-id",
+      const response = await api.post(
+        "/api/user/get-user-info-by-id",
         { token: localStorage.getItem("token") }, //ovo ubrzava obradu??
         {
           headers: {
@@ -115,8 +116,8 @@ const AdminProfil = () => {
     try {
       console.log(previewSorce);
       dispatch(showLoading);
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/upload-admin-img",
+      const response = await api.post(
+        "/api/admin/upload-admin-img",
         { imgUrl: previewSorce },
         {
           headers: {
