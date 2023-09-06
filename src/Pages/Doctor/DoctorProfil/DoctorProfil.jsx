@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import DoctorNav from "../DoctorNav/DoctorNav";
 import { useState } from "react";
-import "./style.scss";
-import "../doctor.scss";
+import "./style.css";
+import "../doctor.css";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -116,14 +116,11 @@ const DoctorProfil = () => {
   const getTherapys = async () => {
     try {
       dispatch(showLoading);
-      const response = await api.get(
-        "/api/user/get-therapys",
-        {
-          headers: {
-            authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await api.get("/api/user/get-therapys", {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       dispatch(hideLoading);
 
       setTherapies([...response.data.data]);

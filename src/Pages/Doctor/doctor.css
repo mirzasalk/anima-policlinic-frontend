@@ -1,0 +1,13 @@
+#doctorMain {
+  display: flex;
+}
+#doctorMain .WorkSpace {
+  width: 100%;
+  display: flex;
+}
+#doctorMain .WorkSpace .rightFieldDiv {
+  margin: 0 1em;
+  border-radius: 10px;
+  width: 82%;
+  height: 90vh;
+}/*# sourceMappingURL=doctor.css.map */

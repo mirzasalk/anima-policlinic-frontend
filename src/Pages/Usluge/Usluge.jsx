@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./usluge.scss";
+import "./usluge.css";
 import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
@@ -24,9 +24,7 @@ const Usluge = () => {
   const getDoctors = async () => {
     try {
       dispatch(showLoading);
-      const response = await api.get(
-        "/api/user/get-doctors-for-unsigned-user"
-      );
+      const response = await api.get("/api/user/get-doctors-for-unsigned-user");
       dispatch(hideLoading);
       console.log(response);
       setLekari([...response.data.data]);

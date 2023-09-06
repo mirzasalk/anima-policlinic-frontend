@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import "./style.scss";
+import "./style.css";
 import { useSelector, useDispatch } from "react-redux";
 import DoctorNav from "../DoctorNav/DoctorNav";
 import axios from "axios";

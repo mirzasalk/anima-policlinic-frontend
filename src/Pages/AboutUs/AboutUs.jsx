@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar";
 import { Link } from "react-router-dom";
-import "./AboutUs.scss";
+import "./AboutUs.css";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";

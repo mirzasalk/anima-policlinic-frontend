@@ -8,7 +8,7 @@ import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 
-import "./login.scss";
+import "./login.css";
 import { setUser } from "../../redux/userSlice";
 import api from "../../api";
 

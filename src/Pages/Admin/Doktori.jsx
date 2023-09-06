@@ -6,7 +6,7 @@ import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./admin.scss";
+import "./admin.css";
 import { toast } from "react-hot-toast";
 import { TimePicker, Space } from "antd";
 import { Image } from "cloudinary-react";

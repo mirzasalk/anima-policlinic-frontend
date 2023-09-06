@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./register.scss";
+import "./register.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";

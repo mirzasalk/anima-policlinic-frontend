@@ -1,0 +1,196 @@
+#homeMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#homeMain .ZastoMiDivHome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 4em 0;
+}
+#homeMain .ZastoMiDivHome .ZastoMiRightDiv {
+  width: 45%;
+}
+#homeMain .ZastoMiDivHome .radnoVremeZAstoMi {
+  border-bottom: 1px solid gray;
+  width: 40%;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#homeMain .ZastoMiDivHome .radnoVremeZAstoMi div {
+  display: flex;
+  flex-direction: row;
+}
+#homeMain .ZastoMiDivHome .radnoVremeZAstoMi img {
+  width: 1em;
+  height: 1em;
+}
+#homeMain .ZastoMiDivHome .radnoVremeZAstoMi p {
+  margin: 0;
+}
+#homeMain .ZastoMiDivHome img {
+  width: 50%;
+}
+#homeMain h1 {
+  margin-top: 5em;
+}
+#homeMain .mainImgDiv {
+  width: 100%;
+}
+#homeMain .mainImgDiv #homePageMainImg {
+  width: 100%;
+  background-color: #03030a;
+  filter: grayscale(50%);
+  filter: blur(5px);
+  filter: brightness(70%);
+}
+#homeMain .mainImgDiv .naslovPocetna {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  border-bottom: 2px solid white;
+  color: white;
+  margin: 0;
+}
+#homeMain .ourSpecies {
+  background-color: #377ba7;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 93.5%;
+  padding: 3em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#homeMain .ourSpecies .cardOfSpecies {
+  width: 40%;
+  padding: 1em 1em 0 1em;
+  height: 30vh;
+  border: 1px solid white;
+  background-color: white;
+  margin-top: 2em;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}
+#homeMain .savetiMain {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3em;
+}
+#homeMain .savetiMain h1 {
+  margin: 0;
+  text-decoration: underline;
+}
+#homeMain .savetiMain .savetiDownDiv {
+  margin-top: 2em;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#homeMain .savetiMain .savetiDownDiv .savetiCard {
+  width: 25%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+#homeMain .savetiMain .savetiDownDiv .savetiCard .nameAndImgDiv {
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  align-items: center;
+}
+#homeMain .savetiMain .savetiDownDiv .savetiCard .nameAndImgDiv img {
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  margin-right: 1em;
+}
+#homeMain .homeWindow {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-image: linear-gradient(to bottom, rgba(160, 160, 44, 0.418), rgba(20, 20, 105, 0.5)), url("homeWindowImg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+}
+#homeMain .homeWindow .ZastoNasDiv {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+#homeMain .homeWindow .ZastoNasDiv p {
+  color: white;
+}
+#homeMain .homeWindow .ZastoNasDiv h1 {
+  margin: 0;
+  color: white;
+}
+#homeMain .homeWindow div {
+  display: flex;
+  height: -moz-fit-content;
+  height: fit-content;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+}
+#homeMain .homeWindow div div {
+  width: 25%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+#homeMain .homeWindow div div img {
+  width: 4em;
+}
+#homeMain .services {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  background-color: #fff;
+  width: 98%;
+  background-color: #377ba7;
+  height: 50vh;
+}
+#homeMain .services .service {
+  background-color: white;
+  width: 18%;
+  padding: 2em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.548);
+}
+#homeMain .services .service h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+#homeMain .services .service p {
+  font-size: 1rem;
+  color: #666;
+}
+#homeMain .services .service:hover {
+  cursor: pointer;
+  background-color: #377ba7;
+  color: white;
+}
+#homeMain .services .service:hover p {
+  color: white;
+}/*# sourceMappingURL=home.css.map */

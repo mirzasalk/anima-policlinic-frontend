@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.scss";
+import "./style.css";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer/Footer";
 const Kontakt = () => {

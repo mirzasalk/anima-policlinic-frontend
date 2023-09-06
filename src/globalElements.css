@@ -1,9 +1,11 @@
 h4 {
   margin: 0;
 }
+
 a {
   text-decoration: none;
 }
+
 button {
   margin-top: 2em;
   background-color: #377ba7;
@@ -13,9 +15,11 @@ button {
   width: 9em;
   height: 3em;
 }
+
 .deleteButton {
   background-color: red;
 }
+
 .loaderParent {
   position: fixed;
   top: 0;
@@ -25,8 +29,9 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #37353521;
+  background-color: rgba(55, 53, 53, 0.1294117647);
 }
+
 .loader {
   width: 48px;
   height: 48px;
@@ -37,6 +42,7 @@ button {
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }
+
 .loader::after {
   content: "";
   box-sizing: border-box;
@@ -50,6 +56,7 @@ button {
   border-bottom: 4px solid transparent;
   animation: rotation 0.5s linear infinite reverse;
 }
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -57,4 +64,4 @@ button {
   100% {
     transform: rotate(360deg);
   }
-}
+}/*# sourceMappingURL=globalElements.css.map */

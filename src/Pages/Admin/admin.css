@@ -1,0 +1,1177 @@
+#adminMain {
+  display: flex;
+}
+#adminMain button {
+  background-color: #2d6d98;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 9em;
+  height: 3em;
+}
+#adminMain button:hover {
+  cursor: pointer;
+}
+#adminMain .doctorBtnsDiv {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+}
+#adminMain .doctorBtnsDiv .deleteBtn {
+  background-color: rgb(248, 42, 42);
+}
+#adminMain .deleteTherapyDivMain {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.546);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#adminMain .deleteTherapyDivMain .deleteTherapyDiv {
+  width: 50%;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em 0 2em 0;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+#adminMain .deleteTherapyDivMain .deleteTherapyDiv .deleteTherapyButtonsDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+#adminMain .DivForAddingNewTherapyMain {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.546);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv {
+  width: 50%;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 0 2em 0;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .newTherapyXiconDiv {
+  width: 99%;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+  margin: 0.5em;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .newTherapyXiconDiv .xIcon {
+  width: 1.8em;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .newTherapyXiconDiv .xIcon:hover {
+  cursor: pointer;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  color: #ffffff;
+  margin-bottom: 0.1em;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput .categoryOfTherapySelector {
+  color: black;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top: 2px solid gray;
+  border-left: 2px solid gray;
+  border-right: 2px solid gray;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput .categoryOfTherapySelector .selsectorMainField {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 98%;
+  border-bottom: 2px solid gray;
+  padding: 0.2em;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput .categoryOfTherapySelector .selsectorMainField p {
+  margin: 0;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput .categoryOfTherapySelector .selsectorMainField:hover {
+  background-color: #2d6d98;
+  color: white;
+  cursor: pointer;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput .categoryOfTherapySelector .categoryOfTherapySelectorDropDown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput .categoryOfTherapySelector .categoryOfTherapySelectorDropDown .selsectorDropDownField {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 98%;
+  border-bottom: 2px solid gray;
+  padding: 0.2em;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput .categoryOfTherapySelector .categoryOfTherapySelectorDropDown .selsectorDropDownField:hover {
+  background-color: #2d6d98;
+  color: white;
+  cursor: pointer;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput .labelEror {
+  color: red;
+  margin: 1em 0 0.1em 0;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput .labelCorect {
+  color: black;
+  margin: 1em 0 0.1em 0;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput input {
+  width: 100%;
+  height: 2em;
+}
+#adminMain .DivForAddingNewTherapyMain .NewTherapyInputsDiv .DivInput textarea {
+  width: 100%;
+}
+#adminMain .WorkSpace {
+  width: 100%;
+  display: flex;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv {
+  width: 13%;
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin: 1em;
+  padding: 0.5em;
+  background-color: #2d6d98;
+  border-radius: 10px;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .zahteviBrojac {
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #ffffff;
+  margin-left: 0.5em;
+  color: red;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .zahteviBrojacNone {
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 50%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0);
+  margin-left: 0.5em;
+  color: red;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .adminMeniLinks {
+  color: white !important;
+  margin: 0;
+  font-size: medium;
+  width: 100%;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .AdminMeniTitle {
+  color: white;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .AdminMeniTitle h3 {
+  margin: 0;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .WorkSpaceMeni {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .WorkSpaceMeni .elemOfMeni {
+  padding: 0.5em 0;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  color: white;
+  border-bottom: 1px solid white;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .WorkSpaceMeni .elemOfMeni p {
+  margin: 0;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .WorkSpaceMeni .elemOfMeni:hover {
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.644);
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .WorkSpaceMeni .elemOfMeni:hover p {
+  color: black;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .WorkSpaceMeni .elemOfMeni .zahteviIcon {
+  width: 2.5em;
+  height: 2.5em;
+  margin-left: -0.2em;
+  margin-right: 1.75em;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .WorkSpaceMeni .elemOfMeni img {
+  width: 2em;
+  height: 2em;
+  margin-right: 2em;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .WorkSpaceMeni .elemOfMeniLink {
+  margin-top: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .WorkSpaceMeni .elemOfMeniLink .adminLink {
+  color: white !important;
+}
+#adminMain .WorkSpace .WorkSpaceMeniDiv .WorkSpaceMeni .elemOfMeniLink .adminLink:hover {
+  text-decoration: underline !important;
+}
+#adminMain .WorkSpace .ListeDiv {
+  margin: 0 1em;
+  border-radius: 10px;
+  width: 82%;
+  height: 90vh;
+}
+#adminMain .WorkSpace .ListeDiv .listaZahteva {
+  width: 100%;
+}
+#adminMain .WorkSpace .ListeDiv .listaZahteva .scrollDiv {
+  width: 100%;
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}
+#adminMain .WorkSpace .ListeDiv .listaZahteva .scrollDiv .Zahtev {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 88%;
+  border: 1px solid gray;
+  border-radius: 0.2em;
+  padding: 0 2em;
+  font-size: 1.1rem;
+  margin-bottom: 0.5em;
+}
+#adminMain .WorkSpace .ListeDiv .listaZahteva .scrollDiv .Zahtev p {
+  border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+#adminMain .WorkSpace .ListeDiv .listaZahteva .scrollDiv .Zahtev p:hover {
+  border-bottom: 1px solid #ffffff;
+}
+#adminMain .WorkSpace .ListeDiv .listaZahteva .scrollDiv .Zahtev:hover {
+  background-color: #4782a9;
+  color: white;
+  cursor: pointer;
+}
+#adminMain .WorkSpace .ListeDiv h1 {
+  width: 95%;
+  border-bottom: 1px solid gray;
+  margin: 1em;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora {
+  margin: 1em;
+  border-radius: 10px;
+  width: 100%;
+  height: 80vh;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora h1 {
+  width: 95%;
+  border-bottom: 1px solid gray;
+  margin: 1em;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForApprovedDoktorCards,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForRejectedDoktorCards,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForArchivedDoktorCards {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 75vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForApprovedDoktorCards .doctorCardDisplayNone,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForRejectedDoktorCards .doctorCardDisplayNone,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForArchivedDoktorCards .doctorCardDisplayNone {
+  display: none;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForApprovedDoktorCards .doctorCard,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForRejectedDoktorCards .doctorCard,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForArchivedDoktorCards .doctorCard {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  text-align: center;
+  width: 90%;
+  padding: 1em;
+  margin: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForApprovedDoktorCards .doctorCard .rightFieldDoctorCard,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForRejectedDoktorCards .doctorCard .rightFieldDoctorCard,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForArchivedDoktorCards .doctorCard .rightFieldDoctorCard {
+  width: 80%;
+  margin: 0 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+  flex-direction: column;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForApprovedDoktorCards .doctorCard img,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForRejectedDoktorCards .doctorCard img,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForArchivedDoktorCards .doctorCard img {
+  width: 15em;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForApprovedDoktorCards .doctorCard img:hover,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForRejectedDoktorCards .doctorCard img:hover,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForArchivedDoktorCards .doctorCard img:hover {
+  cursor: pointer;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForApprovedDoktorCards .doctorCard .DoctorCardTherapy,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForRejectedDoktorCards .doctorCard .DoctorCardTherapy,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForArchivedDoktorCards .doctorCard .DoctorCardTherapy {
+  margin-top: 1em;
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  align-items: start;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForApprovedDoktorCards .doctorCard .DoctorCardTherapy strong,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForRejectedDoktorCards .doctorCard .DoctorCardTherapy strong,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForArchivedDoktorCards .doctorCard .DoctorCardTherapy strong {
+  margin: 0;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForApprovedDoktorCards .doctorCard .DoctorCardTherapy div,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForRejectedDoktorCards .doctorCard .DoctorCardTherapy div,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForArchivedDoktorCards .doctorCard .DoctorCardTherapy div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin-left: 1em;
+}
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForApprovedDoktorCards .doctorCard .DoctorCardTherapy p,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForRejectedDoktorCards .doctorCard .DoctorCardTherapy p,
+#adminMain .WorkSpace .ListeDiv .listaDoktora .DivForArchivedDoktorCards .doctorCard .DoctorCardTherapy p {
+  margin: 0;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija {
+  margin: 1em;
+  border-radius: 10px;
+  width: 100%;
+  height: 80vh;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija h1 {
+  width: 95%;
+  border-bottom: 1px solid gray;
+  margin: 1em;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .filterAndAddDiv {
+  display: flex;
+  height: 3em;
+  margin-bottom: 2em;
+  width: 80%;
+  justify-content: space-between;
+  align-items: end;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .filterAndAddDiv input {
+  height: 2.5em;
+  width: 30%;
+  padding-left: 2em;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .filterAndAddDiv button {
+  width: 30%;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .therapyCardDisplayNone {
+  display: none;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .therapyCard {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  text-align: center;
+  width: 90%;
+  padding: 1em;
+  margin: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .therapyCard .rightFieldTherpyCard {
+  width: 80%;
+  margin: 0 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+  flex-direction: column;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .therapyCard .rightFieldTherpyCard .TherapyButtonsDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .therapyCard .rightFieldTherpyCard .TherapyButtonsDiv .deleteButton {
+  background-color: rgb(248, 42, 42);
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .therapyCard img {
+  width: 15em;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .therapyCard .therapyCardDoctors {
+  margin-top: 1em;
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  align-items: start;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .therapyCard .therapyCardDoctors strong {
+  margin: 0;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .therapyCard .therapyCardDoctors div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin-left: 1em;
+}
+#adminMain .WorkSpace .ListeDiv .listaTerapija .DivForTherapyCards .therapyCard .therapyCardDoctors p {
+  margin: 0;
+}
+#adminMain .WorkSpace .ListeDiv .listaKorisnika {
+  margin: 1em;
+  border-radius: 10px;
+  width: 100%;
+  height: 80vh;
+}
+#adminMain .WorkSpace .ListeDiv .listaKorisnika h1 {
+  width: 95%;
+  border-bottom: 1px solid gray;
+  margin: 1em;
+}
+#adminMain .WorkSpace .ListeDiv .listaKorisnika .DivForUserCards {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+#adminMain .WorkSpace .ListeDiv .listaKorisnika .DivForUserCards .userCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+  padding: 1em;
+  margin: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil {
+  width: 90%;
+  display: flex;
+  margin-top: 1em;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  padding: 1em;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .cardForChangeBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.546);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  color: black;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .cardForChangeBackground .cardForChange {
+  width: 50%;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  padding: 0.5em 0 3em 0;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .cardForChangeBackground .cardForChange .iconDiv {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding-right: 1em;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .cardForChangeBackground .cardForChange .iconDiv img:hover {
+  cursor: pointer;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .cardForChangeBackground .cardForChange .adminInfoElement {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .cardForChangeBackground .cardForChange .adminInfoElement input {
+  height: 2em;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .editIcon {
+  width: 1.5em;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminImgDiv .AdminProfilimg {
+  width: 20em;
+  margin-left: -0.2em;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminImgDiv .editImgDiv {
+  position: absolute;
+  top: 2.5em;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminImgDiv .editImgDiv:hover {
+  cursor: pointer;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminImgDiv .editImgDiv p {
+  margin: -0.5em 0 0 0;
+  color: white;
+  font-size: small;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminInfo {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminInfo .adminName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1em;
+  border-bottom: 1px solid gray;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminInfo .adminName div:hover {
+  cursor: pointer;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminInfo .adminName div p {
+  margin: -0.5em 0 0 0;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminInfo .otherInfo {
+  display: flex;
+  justify-content: start;
+  width: 98%;
+  margin-bottom: 1em;
+  border-bottom: 1px solid gray;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminInfo .otherInfo div:hover {
+  cursor: pointer;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminInfo .otherInfo div p {
+  margin: -0.5em 0 0 0;
+}
+#adminMain .WorkSpace .ListeDiv .AdminProfil .adminInfo .otherInfo div img {
+  width: 1.5em;
+}
+#adminMain .doctorRequesCardMain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.546);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+}
+#adminMain .doctorRequesCard {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  text-align: center;
+  background-color: white;
+  padding: 1em;
+  margin: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+#adminMain .doctorRequesCard .rightFieldDoctorCard {
+  width: 80%;
+  margin: 0 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+  flex-direction: column;
+}
+#adminMain .doctorRequesCard .rightFieldDoctorCard .butonsDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+#adminMain .doctorRequesCard .rightFieldDoctorCard .butonsDiv .odbijButton {
+  background-color: rgb(248, 42, 42);
+}
+#adminMain .doctorRequesCard .exitIcon {
+  width: 2em;
+}
+#adminMain .doctorRequesCard .exitIcon:hover {
+  cursor: pointer;
+}
+#adminMain .doctorRequesCard img {
+  width: 15em;
+}
+#adminMain .doctorRequesCard .DoctorCardTherapy {
+  margin-top: 1em;
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  align-items: start;
+}
+#adminMain .doctorRequesCard .DoctorCardTherapy strong {
+  margin: 0;
+}
+#adminMain .doctorRequesCard .DoctorCardTherapy div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin-left: 1em;
+}
+#adminMain .doctorRequesCard .DoctorCardTherapy p {
+  margin: 0;
+}
+
+.deleteDoctorDivMain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.546);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  color: black;
+}
+.deleteDoctorDivMain .deleteDoctorDiv {
+  width: 50%;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  padding: 0.5em 0 3em 0;
+}
+.deleteDoctorDivMain .deleteDoctorDiv .imgDiv {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 1em 0 0;
+}
+.deleteDoctorDivMain .deleteDoctorDiv .imgDiv img:hover {
+  cursor: pointer;
+}
+.deleteDoctorDivMain .deleteDoctorDiv .deleteDoctorButtonsDiv {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+}
+.deleteDoctorDivMain .deleteDoctorDiv #deleteBtn {
+  background-color: rgb(248, 42, 42);
+}
+
+.changeDoctorinfoDiv {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.546);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.changeDoctorinfoFormDiv {
+  background-color: white;
+  width: 50%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  border: 1px solid gray;
+  border-radius: 1em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.changeDoctorinfoFormDiv .iconDiv {
+  display: flex;
+  justify-content: end;
+}
+.changeDoctorinfoFormDiv .iconDiv img:hover {
+  cursor: pointer;
+}
+
+.TerapijeZahteva {
+  display: flex;
+}
+
+.AddNewDoctorDiv {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 1em 3em;
+  width: 90%;
+  margin-top: -1em;
+}
+.AddNewDoctorDiv .changePageStatusDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+}
+.AddNewDoctorDiv .changePageStatusDiv p {
+  text-decoration: underline;
+  color: #2d6d98;
+}
+.AddNewDoctorDiv .changePageStatusDiv p:hover {
+  cursor: pointer;
+  color: rgba(227, 146, 24, 0.836);
+}
+
+#apliciranjeMain {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+#apliciranjeMain h1 {
+  margin: 0em 0.5em 0.5em 0.5em;
+}
+#apliciranjeMain .formDiv {
+  width: 90%;
+  margin-top: 100px;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  border: 1px solid gray;
+  border-radius: 1em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: white;
+}
+
+.ant-picker {
+  border: 1px solid rgb(81, 79, 79) !important;
+  height: 2.8em !important;
+  border-radius: 0.2em !important;
+}
+
+.formMiddleLine {
+  width: 100%;
+  border-bottom: 0.5px solid rgb(81, 79, 79);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fieldAboveCenterLine {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.fieldAboveCenterLine .inputDiv {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  margin: 1em;
+  width: 30.3%;
+  padding: auto;
+}
+.fieldAboveCenterLine .inputDiv input {
+  width: 98%;
+  height: 3em;
+  padding: 0 1em;
+}
+
+.fieldBelowCenterLine {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.fieldBelowCenterLine .inputDiv {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  margin: 1em;
+  width: 30.3%;
+  padding: auto;
+}
+.fieldBelowCenterLine .inputDiv label {
+  text-align: center;
+}
+.fieldBelowCenterLine .inputDiv input {
+  width: 98%;
+  height: 3em;
+  padding: 0 1em;
+}
+
+.timePickerDiv {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  margin: 1em;
+  width: 30.3%;
+  padding: auto;
+}
+.timePickerDiv input {
+  width: 98%;
+  height: 3em;
+  padding: 0 1em;
+}
+
+.buttonDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttonDiv button {
+  width: 30%;
+}
+.buttonDiv button:hover {
+  cursor: pointer;
+}
+
+.errorClass {
+  margin: 0;
+  color: red;
+}
+
+.correctClass {
+  margin: 0;
+  color: black;
+}
+
+.inputDivTerapies {
+  width: 30%;
+}
+
+.terapiesCheckbox {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 12vh;
+  border: 1px solid gray;
+  width: 100%;
+  justify-content: start;
+}
+.terapiesCheckbox .therapiCheckField {
+  display: flex;
+  width: 100%;
+  border: 1px solid black;
+  justify-content: start;
+  align-items: center;
+}
+.terapiesCheckbox .therapiCheckField span {
+  margin-left: 1rem;
+}
+.terapiesCheckbox .therapiCheckField input {
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+#newDoctorMain {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.546);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+#newDoctorMain h1 {
+  margin: 0em 0.5em 0.5em 0.5em;
+}
+#newDoctorMain .formDiv {
+  width: 90%;
+  margin-top: 50px;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid gray;
+  border-radius: 1em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: white;
+}
+
+.ant-picker {
+  border: 1px solid rgb(81, 79, 79) !important;
+  height: 2.8em !important;
+  border-radius: 0.2em !important;
+}
+
+.formMiddleLine {
+  width: 100%;
+  border-bottom: 0.5px solid rgb(81, 79, 79);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fieldAboveCenterLine {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.fieldAboveCenterLine .inputDiv {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  margin: 1em;
+  width: 30.3%;
+  padding: auto;
+}
+.fieldAboveCenterLine .inputDiv input {
+  width: 98%;
+  height: 3em;
+  padding: 0 1em;
+}
+
+.fieldBelowCenterLine {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.fieldBelowCenterLine .inputDiv {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  margin: 1em;
+  width: 30.3%;
+  padding: auto;
+}
+.fieldBelowCenterLine .inputDiv label {
+  text-align: center;
+}
+.fieldBelowCenterLine .inputDiv input {
+  width: 98%;
+  height: 3em;
+  padding: 0 1em;
+}
+.fieldBelowCenterLine .inputPassDiv {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  margin: 1em;
+  width: 25%;
+  padding: auto;
+}
+.fieldBelowCenterLine .inputPassDiv input {
+  width: 60%;
+  height: 3em;
+  padding: 0 1em;
+}
+
+.timePickerDiv {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  margin: 1em;
+  width: 30.3%;
+  padding: auto;
+}
+.timePickerDiv input {
+  width: 98%;
+  height: 3em;
+  padding: 0 1em;
+}
+
+.buttonDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttonDiv button {
+  width: 30%;
+}
+.buttonDiv button:hover {
+  cursor: pointer;
+}
+
+.errorClass {
+  margin: 0;
+  color: red;
+}
+
+.correctClass {
+  margin: 0;
+  color: black;
+}
+
+.inputDivTerapies {
+  width: 30%;
+}
+
+.terapiesCheckbox {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 12vh;
+  border: 1px solid gray;
+  width: 100%;
+  justify-content: start;
+}
+.terapiesCheckbox .therapiCheckField {
+  display: flex;
+  width: 100%;
+  border: 1px solid black;
+  justify-content: start;
+  align-items: center;
+}
+.terapiesCheckbox .therapiCheckField span {
+  margin-left: 1rem;
+}
+.terapiesCheckbox .therapiCheckField input {
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.iconDivNewDoctor {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding-right: 1em;
+}
+.iconDivNewDoctor img:hover {
+  cursor: pointer;
+}
+
+.changeImageDiv {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.546);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.changeImageDiv .changeImageCard {
+  width: 35%;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em 1em 2em 1em;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.changeImageDiv .changeImageCard .xIconDiv {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.changeImageDiv .changeImageCard .xIconDiv:hover {
+  cursor: pointer;
+}
+.changeImageDiv .changeImageCard .drimg {
+  width: 15em;
+}
+.changeImageDiv .changeImageCard input {
+  margin-top: 1em;
+}
+.changeImageDiv .changeImageCard .uploadedImg {
+  width: 15em;
+  height: 15em;
+}
+.changeImageDiv .changeImageCard .arrowDown {
+  height: 2em;
+  margin: 0.5em 0 0.5em 0;
+}
+
+.fileInput {
+  width: 15em;
+}/*# sourceMappingURL=admin.css.map */

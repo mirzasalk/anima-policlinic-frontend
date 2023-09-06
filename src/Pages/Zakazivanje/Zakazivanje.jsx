@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../../Components/Navbar";
-import "./style.scss";
+import "./style.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./admin.scss";
+import "./admin.css";
 import { useSelector } from "react-redux";
 
 const AdminNav = () => {

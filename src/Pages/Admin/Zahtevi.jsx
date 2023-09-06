@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AdminNav from "./AdminNav";
 import { useState } from "react";
-import "./admin.scss";
+import "./admin.css";
 import { useSelector, useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../../redux/alertsSlice";
 import axios from "axios";
@@ -49,7 +49,7 @@ const Zahtevi = () => {
       );
       dispatch(hideLoading());
       if (response.data.success) {
-        location.reload();
+        navigate("/zahtevi");
       } else {
         console.log("greska");
       }
@@ -72,7 +72,7 @@ const Zahtevi = () => {
       );
       dispatch(hideLoading());
       if (response.data.success) {
-        location.reload();
+        setCardShow(false);
       } else {
         console.log("greska");
       }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../Components/Navbar";
-import "./aliciranjezaposao.scss";
+import "./aliciranjezaposao.css";
 import { TimePicker, Space } from "antd";
 import { useEffect } from "react";
 import toast from "react-hot-toast";

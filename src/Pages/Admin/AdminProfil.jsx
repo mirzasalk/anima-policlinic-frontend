@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AdminNav from "./AdminNav";
 import { useState } from "react";
-import "./admin.scss";
+import "./admin.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";

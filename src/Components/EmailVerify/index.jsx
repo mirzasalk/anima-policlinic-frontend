@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from "react";
 import { Link, useParams } from "react-router-dom";
-import "./style.scss";
+import "./style.css";
 import axios from "axios";
 import api from "../../api";
 

@@ -1,0 +1,309 @@
+a {
+  text-decoration: none;
+}
+
+#lekariMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5em;
+}
+
+.prvaSlikaOurTeamDiv {
+  display: flex;
+  width: 100%;
+  margin-bottom: 4em;
+}
+.prvaSlikaOurTeamDiv img {
+  width: 100%;
+}
+.prvaSlikaOurTeamDiv h1 {
+  color: white;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  border-bottom: 2px solid white;
+}
+
+.filterDiv {
+  width: 80%;
+  height: 36vh;
+  border: 1px solid #377ba7;
+  display: flex;
+  justify-content: space-evenly;
+  justify-content: center;
+  align-items: start;
+  margin-bottom: 2em;
+  box-shadow: 1px 1px 5px #377ba7;
+  padding: 2em 0;
+}
+.filterDiv .filterDivText {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  width: 45%;
+}
+.filterDiv .FilterTerapijeDropDown {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+.filterDiv .FilterTerapijeDropDown h4 {
+  margin: 0.2em;
+  color: #377ba7;
+  border-bottom: 1px solid #377ba7;
+}
+.filterDiv .FilterTerapijeDropDown img {
+  width: 1.3em;
+  height: 1.3em;
+  margin: 0;
+  padding: 0;
+}
+.filterDiv .FilterTerapijeDropDown .dropDownFirstField {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #377ba7;
+  padding: 0.5em;
+  width: 50%;
+}
+.filterDiv .FilterTerapijeDropDown .dropDownFirstField:hover {
+  color: white;
+  background-color: #377ba7;
+  cursor: pointer;
+}
+.filterDiv .FilterTerapijeDropDown .dropDownFirstField p {
+  font-size: small;
+  margin: 0;
+}
+.filterDiv .FilterTerapijeDropDown .DropDownScrollDiv {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 28vh;
+  width: 53.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+.filterDiv .FilterTerapijeDropDown .DropDownScrollDiv div {
+  border-bottom: 2px solid #377ba7;
+  padding: 0.5em;
+  width: 100%;
+}
+.filterDiv .FilterTerapijeDropDown .DropDownScrollDiv div:hover {
+  color: white;
+  background-color: #377ba7;
+  cursor: pointer;
+}
+.filterDiv .FilterTerapijeDropDown .DropDownScrollDiv div p {
+  font-size: small;
+  margin: 0;
+}
+
+.naslovLekari {
+  color: #377ba7;
+  border-bottom: 2px solid gray;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.lekariTerapije {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+}
+.lekariTerapije div {
+  display: flex;
+  flex: wrap;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+.lekariTerapije div P {
+  margin: 0;
+}
+.lekariTerapije h4 {
+  margin-right: 1em;
+}
+.lekariTerapije p {
+  margin-right: 0.5em;
+}
+
+#listaLekara {
+  width: 100%;
+  padding-top: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#listaLekara .DoctorCard {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 5em;
+}
+#listaLekara .DoctorCard .DoctorCardText {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#listaLekara .DoctorCard .DoctorCardText h2 {
+  color: #377ba7;
+  border-bottom: 1px solid #377ba7;
+}
+#listaLekara .DoctorCard .DoctorCardImg {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  width: 45%;
+  height: 50vh;
+}
+#listaLekara .DoctorCard .DoctorCardImg img {
+  position: absolute;
+  right: 30%;
+  width: 20em;
+  border-radius: 50%;
+  z-index: -1;
+}
+#listaLekara .DoctorCard .DoctorCardImg div {
+  background-color: #377ba7;
+  width: 80%;
+  height: 15em;
+  margin-bottom: -2em;
+  z-index: -2;
+}
+#listaLekara .DoctorCardInverse {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 5em;
+}
+#listaLekara .DoctorCardInverse .DoctorCardText {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#listaLekara .DoctorCardInverse .DoctorCardText h2 {
+  color: #377ba7;
+  border-bottom: 1px solid #377ba7;
+}
+#listaLekara .DoctorCardInverse .DoctorCardImg {
+  display: flex;
+  justify-content: start;
+  align-items: end;
+  width: 45%;
+  height: 50vh;
+  margin-bottom: 4em;
+}
+#listaLekara .DoctorCardInverse .DoctorCardImg img {
+  position: absolute;
+  left: 30%;
+  width: 20em;
+  border-radius: 50%;
+  z-index: -1;
+}
+#listaLekara .DoctorCardInverse .DoctorCardImg div {
+  background-color: #377ba7;
+  width: 80%;
+  height: 15em;
+  margin-bottom: -2em;
+  z-index: -2;
+}
+
+@media only screen and (max-width: 1157px) {
+  .filterDiv .FilterLekariDropDown .dropDownFirstField {
+    width: 65%;
+  }
+  .filterDiv .FilterLekariDropDown .DropDownScrollDiv {
+    width: 69%;
+  }
+  #listaLekara .DoctorCard .DoctorCardImg img {
+    position: absolute;
+    right: 20%;
+    width: 20em;
+    border-radius: 50%;
+  }
+  #listaLekara .DoctorCardInverse .DoctorCardImg img {
+    position: absolute;
+    left: 20%;
+    width: 20em;
+    border-radius: 50%;
+  }
+}
+@media only screen and (max-width: 907px) {
+  .filterDiv .FilterLekariDropDown .dropDownFirstField {
+    width: 80%;
+  }
+  .filterDiv .FilterLekariDropDown .DropDownScrollDiv {
+    width: 84.5%;
+  }
+  .prvaSlikaUslugeDiv h1 {
+    top: 25%;
+    left: 50%;
+  }
+  #listaLekara .DoctorCard {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  #listaLekara .DoctorCard .DoctorCardText {
+    width: 80%;
+  }
+  #listaLekara .DoctorCard .DoctorCardText .lekariTerapije {
+    justify-content: end;
+  }
+  #listaLekara .DoctorCard .TerapyCardImg {
+    width: 100%;
+  }
+  #listaLekara .DoctorCard .TerapyCardImg div {
+    width: 55%;
+  }
+  #listaLekara .DoctorCard .TerapyCardImg img {
+    right: 32%;
+  }
+  #listaLekara .TerapyCardInverse {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  #listaLekara .TerapyCardInverse .TerapyCardText {
+    width: 80%;
+  }
+  #listaLekara .TerapyCardInverse .TerapyCardImg {
+    width: 100%;
+  }
+  #listaLekara .TerapyCardInverse .TerapyCardImg div {
+    width: 55%;
+  }
+  #listaLekara .TerapyCardInverse .TerapyCardImg img {
+    left: 32%;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .filterDiv .FilterLekariDropDown .dropDownFirstField {
+    width: 90%;
+  }
+  .filterDiv .FilterLekariDropDown .DropDownScrollDiv {
+    width: 97%;
+  }
+  .prvaSlikaUslugeDiv h1 {
+    top: 25%;
+    left: 50%;
+  }
+}/*# sourceMappingURL=style.css.map */

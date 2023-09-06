@@ -1,5 +1,5 @@
 import Navbar from "../../Components/Navbar";
-import "./home.scss";
+import "./home.css";
 import Footer from "../../Components/Footer/Footer";
 import { useSelector } from "react-redux";
 
