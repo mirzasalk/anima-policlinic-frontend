@@ -7,7 +7,7 @@ import Korisnici from "./Pages/Admin/Korisnici";
 import Home from "./Pages/Home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import "./globalElements.scss";
+import "./globalElements.css";
 import AdminProfil from "./Pages/Admin/AdminProfil";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
