@@ -44,7 +44,7 @@ function App() {
             }
           />
           <Route
-            path="/user/:id/verify/:token"
+            path="/user/:id/verify"
             element={
               <PublicRoute>
                 <EmailVerify />
