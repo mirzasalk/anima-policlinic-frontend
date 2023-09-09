@@ -12,6 +12,7 @@ const EmailVerify = () => {
     const VerifyEmailUrl = async () => {
       try {
         const url = `/api/user/${params.id}/verify`;
+
         const { data } = await api.get(url);
 
         console.log(data);
